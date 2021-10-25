@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Pharmacy App</string>
+    <string name="uname">User Name</string>
+    <string name="pass">Password</string>
+    <string name="signinbtn">Sign In</string>
+    <string name="signupbtn">Sign Up</string>
+    <string name="signUpFullName">Full Name</string>
+    <string name="signUpPhone">Phone</string>
+    <string name="passrecheck">Confirm Password</string>
+    <string name="signUpEmail">Email</string>
+</resources>
