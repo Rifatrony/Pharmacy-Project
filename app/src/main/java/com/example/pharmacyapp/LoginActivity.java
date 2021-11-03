@@ -22,6 +22,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        this.setTitle("Sign In");
+
         signInEmailEditText = findViewById(R.id.signInEmailEditTextId);
         signInPasswordEditText = findViewById(R.id.signInPasswordEditTextId);
 
@@ -39,7 +41,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View view) {
 
         if (view.getId()==R.id.signInButtonId){
-            Intent intent = new Intent(this,SignUpActivity.class);
+            Intent intent = new Intent(this,MainDashBoard.class);
             startActivity(intent);
         }
         else if (view.getId()==R.id.signUpTextViewId){

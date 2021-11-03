@@ -8,4 +8,7 @@
     <string name="signUpPhone">Phone</string>
     <string name="passrecheck">Confirm Password</string>
     <string name="signUpEmail">Email</string>
+
+    <string name="nav_open">Open</string>
+    <string name="nav_close">Close</string>
 </resources>

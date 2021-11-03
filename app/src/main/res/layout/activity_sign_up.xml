@@ -36,41 +36,7 @@
         android:gravity="center">
 
 
-        <EditText
 
-            android:backgroundTint="@color/white"
-            android:textCursorDrawable="@color/black"
-            android:layout_width="330dp"
-            android:layout_height="match_parent"
-            android:id="@+id/signUpFullNameEditTextId"
-            android:hint="@string/signUpFullName"
-            android:drawablePadding="10dp"
-            android:drawableStart="@drawable/user_name_icon"
-            android:background="@drawable/loginbackground"
-            android:padding="12dp"
-            android:textSize="20sp"
-            android:inputType="text"
-            android:layout_marginBottom="10dp"
-
-            />
-
-        <EditText
-
-            android:backgroundTint="@color/white"
-            android:textCursorDrawable="@color/black"
-            android:layout_width="330dp"
-            android:layout_height="match_parent"
-            android:id="@+id/signUpUsernameEditTextId"
-            android:hint="@string/uname"
-            android:drawablePadding="10dp"
-            android:drawableStart="@drawable/user_name_icon"
-            android:background="@drawable/loginbackground"
-            android:padding="12dp"
-            android:textSize="20sp"
-            android:inputType="text"
-            android:layout_marginBottom="10dp"
-
-            />
         <EditText
 
             android:backgroundTint="@color/white"
@@ -89,22 +55,6 @@
             />
 
 
-        <EditText
-
-            android:backgroundTint="@color/white"
-            android:textCursorDrawable="@color/black"
-            android:layout_width="330dp"
-            android:layout_height="match_parent"
-            android:id="@+id/signUpPhoneNumberEditTextId"
-            android:hint="@string/signUpPhone"
-            android:drawablePadding="10dp"
-            android:drawableStart="@drawable/phone_icon"
-            android:background="@drawable/loginbackground"
-            android:padding="12dp"
-            android:textSize="20sp"
-            android:inputType="phone"
-            android:layout_marginBottom="10dp"
-            />
 
 
         <EditText
@@ -125,22 +75,7 @@
             />
 
 
-        <EditText
 
-            android:backgroundTint="@color/white"
-            android:textCursorDrawable="@color/black"
-            android:layout_width="330dp"
-            android:layout_height="match_parent"
-            android:id="@+id/signUpConfirmPasswordEditTextId"
-            android:hint="@string/passrecheck"
-            android:drawablePadding="10dp"
-            android:drawableStart="@drawable/lock_icon"
-            android:background="@drawable/loginbackground"
-            android:padding="12dp"
-            android:textSize="20sp"
-            android:inputType="textPassword"
-            android:layout_marginBottom="20dp"
-            />
 
         <Button
             android:id="@+id/signUpButtonId"
@@ -164,6 +99,15 @@
             android:textSize="20sp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
+            />
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:id="@+id/progressBarId"
+            android:layout_gravity="center"
+            android:outlineSpotShadowColor="@color/white"
             />
 
 

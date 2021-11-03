@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.pharmacyapp">
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,6 +9,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PharmacyApp">
+        <activity
+            android:name=".MedicineCategory"
+            android:exported="true" />
+        <activity
+            android:name=".MedicineAll"
+            android:exported="true" />
+        <activity
+            android:name=".MainDashBoard"
+            android:exported="true" />
+        <activity
+            android:name=".MedicineDetailsActivity"
+            android:exported="true" />
+        <activity
+            android:name=".DashboardActivity"
+            android:exported="true" />
         <activity
             android:name=".SignUpActivity"
             android:exported="true" />
