@@ -88,7 +88,7 @@
                     android:background="@drawable/background_shape"
                     android:layout_width="64dp"
                     android:layout_height="64dp"
-                    android:src="@drawable/ic_baseline_medical_services_24"
+                    android:src="@drawable/stock_icon"
                     android:padding="10dp"
                     />
                 <View
@@ -231,7 +231,7 @@
 
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/xCardViewId"
+            android:id="@+id/customerCardViewId"
             android:layout_margin="15dp"
             android:clickable="true"
             android:foreground="?android:attr/selectableItemBackground"
@@ -251,7 +251,7 @@
                     android:background="@drawable/background_shape"
                     android:layout_width="64dp"
                     android:layout_height="64dp"
-                    android:src="@drawable/ic_baseline_medical_services_24"
+                    android:src="@drawable/customer_add_icon"
                     android:padding="10dp"
                     />
                 <View
@@ -265,7 +265,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="1dp"
-                    android:text="X"
+                    android:text="Customer"
                     android:textStyle="bold"
                     android:textAppearance="?android:textAppearanceLarge"
                     />
@@ -277,7 +277,7 @@
 
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/yCardViewId"
+            android:id="@+id/paymentCardViewId"
             android:layout_margin="15dp"
             android:clickable="true"
             android:foreground="?android:attr/selectableItemBackground"
@@ -297,7 +297,7 @@
                     android:background="@drawable/background_shape"
                     android:layout_width="64dp"
                     android:layout_height="64dp"
-                    android:src="@drawable/ic_baseline_medical_services_24"
+                    android:src="@drawable/payment_icon"
                     android:padding="10dp"
                     />
                 <View
@@ -311,7 +311,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="1dp"
-                    android:text="Y"
+                    android:text="Payment"
                     android:textStyle="bold"
                     android:textAppearance="?android:textAppearanceLarge"
                     />

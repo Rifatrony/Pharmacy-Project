@@ -22,7 +22,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        this.setTitle("Sign In");
+        this.setTitle("Login");
 
         signInEmailEditText = findViewById(R.id.signInEmailEditTextId);
         signInPasswordEditText = findViewById(R.id.signInPasswordEditTextId);

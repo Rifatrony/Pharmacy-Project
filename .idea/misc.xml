@@ -7,14 +7,20 @@
         <entry key="..\:/Users/pc/AndroidStudioProjects/PharmacyApp/app/src/main/res/drawable/backgroundshape.xml" value="0.2203125" />
         <entry key="..\:/Users/pc/AndroidStudioProjects/PharmacyApp/app/src/main/res/drawable/buttonbackground.xml" value="0.13072916666666667" />
         <entry key="..\:/Users/pc/AndroidStudioProjects/PharmacyApp/app/src/main/res/drawable/gradiant.xml" value="0.15104166666666666" />
+        <entry key="..\:/Users/pc/AndroidStudioProjects/PharmacyApp/app/src/main/res/drawable/ic_baseline_medical_services_24.xml" value="0.12604166666666666" />
         <entry key="..\:/Users/pc/AndroidStudioProjects/PharmacyApp/app/src/main/res/drawable/loginbackground.xml" value="0.13072916666666667" />
         <entry key="..\:/Users/pc/AndroidStudioProjects/PharmacyApp/app/src/main/res/drawable/user_name_icon.xml" value="0.13072916666666667" />
         <entry key="..\:/Users/pc/AndroidStudioProjects/PharmacyApp/app/src/main/res/layout/activity_dashboard.xml" value="0.14" />
+        <entry key="..\:/Users/pc/AndroidStudioProjects/PharmacyApp/app/src/main/res/layout/activity_generic_name.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/pc/AndroidStudioProjects/PharmacyApp/app/src/main/res/layout/activity_main.xml" value="0.175" />
-        <entry key="..\:/Users/pc/AndroidStudioProjects/PharmacyApp/app/src/main/res/layout/activity_main_dash_board.xml" value="0.1" />
+        <entry key="..\:/Users/pc/AndroidStudioProjects/PharmacyApp/app/src/main/res/layout/activity_main_dash_board.xml" value="0.15" />
+        <entry key="..\:/Users/pc/AndroidStudioProjects/PharmacyApp/app/src/main/res/layout/activity_manufacture.xml" value="0.10989583333333333" />
         <entry key="..\:/Users/pc/AndroidStudioProjects/PharmacyApp/app/src/main/res/layout/activity_medicine_all.xml" value="0.15" />
         <entry key="..\:/Users/pc/AndroidStudioProjects/PharmacyApp/app/src/main/res/layout/activity_medicine_category.xml" value="0.15" />
         <entry key="..\:/Users/pc/AndroidStudioProjects/PharmacyApp/app/src/main/res/layout/activity_medicine_details.xml" value="0.1" />
+        <entry key="..\:/Users/pc/AndroidStudioProjects/PharmacyApp/app/src/main/res/layout/activity_medicine_type.xml" value="0.1" />
+        <entry key="..\:/Users/pc/AndroidStudioProjects/PharmacyApp/app/src/main/res/layout/activity_medicine_unit.xml" value="0.22" />
+        <entry key="..\:/Users/pc/AndroidStudioProjects/PharmacyApp/app/src/main/res/layout/activity_purchase_medicine.xml" value="0.10989583333333333" />
         <entry key="..\:/Users/pc/AndroidStudioProjects/PharmacyApp/app/src/main/res/layout/activity_sign_up.xml" value="0.13" />
         <entry key="..\:/Users/pc/AndroidStudioProjects/PharmacyApp/app/src/main/res/layout/nav_header.xml" value="0.10989583333333333" />
         <entry key="..\:/Users/pc/AndroidStudioProjects/PharmacyApp/app/src/main/res/menu/nav_menu_layout.xml" value="0.10989583333333333" />

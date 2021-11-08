@@ -6,20 +6,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-public class MedicineCategory extends AppCompatActivity {
+public class MedicineType extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_medicine_category);
-        this.setTitle("Medicine Category");
+        setContentView(R.layout.activity_medicine_type);
 
-        this.setTitle("Medicine Category");
+        this.setTitle("Medicine Type");
+
+
         //Add back Button on tool bar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-
     }
+
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
@@ -29,4 +31,5 @@ public class MedicineCategory extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }

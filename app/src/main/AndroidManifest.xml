@@ -10,6 +10,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PharmacyApp">
         <activity
+            android:name=".AddMedicine"
+            android:exported="true" />
+        <activity
+            android:name=".Manufacture"
+            android:exported="true" />
+        <activity
+            android:name=".GenericName"
+            android:exported="true" />
+        <activity
+            android:name=".MedicineUnit"
+            android:exported="true" />
+        <activity
+            android:name=".MedicineType"
+            android:exported="true" />
+        <activity
+            android:name=".PurchaseMedicine"
+            android:exported="true" />
+        <activity
             android:name=".MedicineCategory"
             android:exported="true" />
         <activity

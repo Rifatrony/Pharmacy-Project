@@ -22,6 +22,8 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
+        this.setTitle("Dashboard");
+
         navigationView =  findViewById(R.id.navigationId);
         navigationView.setNavigationItemSelectedListener(this);
 

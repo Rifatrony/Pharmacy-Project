@@ -6,20 +6,24 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-public class MedicineCategory extends AppCompatActivity {
+public class AddMedicine extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_medicine_category);
-        this.setTitle("Medicine Category");
+        setContentView(R.layout.activity_add_medicine);
 
-        this.setTitle("Medicine Category");
-        //Add back Button on tool bar
+        setTitle("Add Medicine");
+
+        //add back button tool bar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
+
+
     }
+
+    //add back button tool bar
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 

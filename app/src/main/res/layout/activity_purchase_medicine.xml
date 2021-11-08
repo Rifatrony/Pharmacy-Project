@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+    android:padding="10dp"
+    android:background="@color/white"
+    tools:context=".PurchaseMedicine">
+
+    <EditText
+        android:id="@+id/buyDateId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Buy Date"
+        android:inputType="date"
+        android:backgroundTint="@color/black"
+        android:layout_marginBottom="10dp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Manufacture"
+            android:textSize="20sp"
+            />
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+
+            />
+
+    </LinearLayout>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Batch Id"
+        android:layout_marginBottom="10dp"
+        android:backgroundTint="@color/black"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Expire Date"
+        android:inputType="datetime"
+        android:layout_marginBottom="10dp"
+        android:backgroundTint="@color/black"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Quantity"
+        android:inputType="numberDecimal"
+        android:layout_marginBottom="10dp"
+        android:backgroundTint="@color/black"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Unit Price"
+        android:inputType="numberDecimal"
+        android:layout_marginBottom="10dp"
+        android:backgroundTint="@color/black"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Manufacture Price"
+        android:inputType="numberDecimal"
+        android:layout_marginBottom="10dp"
+        android:backgroundTint="@color/black"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:backgroundTint="@color/black"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="10dp"
+
+        />
+
+
+
+
+
+
+</LinearLayout>
