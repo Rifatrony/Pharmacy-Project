@@ -6,19 +6,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
 
-    android:padding="10dp"
-    android:background="@color/white"
+    android:padding="20dp"
+    android:background="@drawable/background_color_for_page"
     tools:context=".PurchaseMedicine">
-
-    <EditText
-        android:id="@+id/buyDateId"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Buy Date"
-        android:inputType="date"
-        android:backgroundTint="@color/black"
-        android:layout_marginBottom="10dp"
-        />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -41,6 +31,18 @@
             />
 
     </LinearLayout>
+
+    <EditText
+        android:id="@+id/buyDateId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Buy Date"
+        android:inputType="datetime"
+        android:backgroundTint="@color/black"
+        android:layout_marginBottom="10dp"
+        />
+
+
 
     <EditText
         android:layout_width="match_parent"
@@ -86,10 +88,10 @@
         />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:text="Save"
-        android:backgroundTint="@color/black"
+        android:backgroundTint="#F38A39"
         android:layout_gravity="center_horizontal"
         android:layout_margin="10dp"
 

@@ -1,20 +1,24 @@
 package com.example.pharmacyapp;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainDashBoard extends AppCompatActivity implements View.OnClickListener {
 
     private CardView medicineCardView,stockCardView,purchaseCardView,
             sellCardView,customerCardView,paymentCardView;
 
+    private AlertDialog.Builder alertDialogBuilder;
 
 
     @Override
@@ -26,8 +30,8 @@ public class MainDashBoard extends AppCompatActivity implements View.OnClickList
 
 
         //Add back Button on tool bar
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        /*getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);*/
 
 
         medicineCardView = findViewById(R.id.medicineCardViewId);
@@ -48,7 +52,7 @@ public class MainDashBoard extends AppCompatActivity implements View.OnClickList
 
     }
 
-    @Override
+  /*  @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         if (item.getItemId()==android.R.id.home){
@@ -56,7 +60,54 @@ public class MainDashBoard extends AppCompatActivity implements View.OnClickList
         }
 
         return super.onOptionsItemSelected(item);
-    }
+    }*/
+  public void onBackPressed() {
+
+      alertDialogBuilder = new AlertDialog.Builder(MainDashBoard.this);
+
+      //set title
+      alertDialogBuilder.setTitle("Alert title");
+
+      //Setting message
+
+      alertDialogBuilder.setMessage("Do you want to exit ?");
+
+      //set icon
+
+      alertDialogBuilder.setIcon(R.drawable.question);
+
+      alertDialogBuilder.setCancelable(false);
+
+      //set positive button
+      alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+          @Override
+          public void onClick(DialogInterface dialogInterface, int i) {
+              //exit
+              finish();
+          }
+      });
+
+      alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+          @Override
+          public void onClick(DialogInterface dialogInterface, int i) {
+
+              dialogInterface.cancel();
+          }
+      });
+
+      alertDialogBuilder.setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
+          @Override
+          public void onClick(DialogInterface dialogInterface, int i) {
+
+              Toast.makeText(MainDashBoard.this, "You have clicked on cancel button",Toast.LENGTH_SHORT).show();
+          }
+      });
+
+
+      AlertDialog alertDialog = alertDialogBuilder.create();
+      alertDialog.show();
+
+  }
 
     @Override
     public void onClick(View view) {
