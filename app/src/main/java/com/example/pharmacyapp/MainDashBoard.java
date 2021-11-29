@@ -66,11 +66,11 @@ public class MainDashBoard extends AppCompatActivity implements View.OnClickList
       alertDialogBuilder = new AlertDialog.Builder(MainDashBoard.this);
 
       //set title
-      alertDialogBuilder.setTitle("Alert title");
+      alertDialogBuilder.setTitle("Confirm Exit");
 
       //Setting message
 
-      alertDialogBuilder.setMessage("Do you want to exit ?");
+      alertDialogBuilder.setMessage("Do you really want to exit ?");
 
       //set icon
 
@@ -95,14 +95,13 @@ public class MainDashBoard extends AppCompatActivity implements View.OnClickList
           }
       });
 
-      alertDialogBuilder.setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
+      /*alertDialogBuilder.setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
           @Override
           public void onClick(DialogInterface dialogInterface, int i) {
 
               Toast.makeText(MainDashBoard.this, "You have clicked on cancel button",Toast.LENGTH_SHORT).show();
           }
-      });
-
+      });*/
 
       AlertDialog alertDialog = alertDialogBuilder.create();
       alertDialog.show();
@@ -113,7 +112,7 @@ public class MainDashBoard extends AppCompatActivity implements View.OnClickList
     public void onClick(View view) {
 
         if (view.getId()==R.id.medicineCardViewId){
-            Intent intent = new Intent(this,MedicineAll.class);
+            Intent intent = new Intent(this,SubDeshboard.class);
             startActivity(intent);
         }
         if (view.getId()==R.id.stockCardViewId){

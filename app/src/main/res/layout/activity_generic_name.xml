@@ -5,28 +5,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
-    android:padding="10dp"
+    android:gravity="center_horizontal"
+    android:padding="20dp"
     tools:context=".GenericName">
 
     <EditText
+        android:layout_marginTop="50dp"
+        android:id="@+id/genericNameEditTextId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Generic Name (e.g...)"
-        android:padding="10dp"
+        android:hint="Generic Name (e.g. Paracetamol)"
+
         android:backgroundTint="@color/black"
         />
 
     <Button
-        android:layout_width="150dp"
+        android:id="@+id/genericNameSaveButtonId"
+        android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:layout_marginTop="10dp"
-        android:text="Save"
+        android:layout_marginTop="20dp"
+        android:text="Save Generic Name"
         android:textAllCaps="false"
         android:textSize="20sp"
-        android:layout_margin="50dp"
+
         android:textColor="@color/white"
-        android:backgroundTint="@color/black"
+        android:backgroundTint="#45BD17"
         />
 
 </LinearLayout>

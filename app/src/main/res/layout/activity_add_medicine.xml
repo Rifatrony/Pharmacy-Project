@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="10dp"
+    android:background="@drawable/background_color_for_page"
     tools:context=".AddMedicine">
 
     <LinearLayout
@@ -17,28 +18,49 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Name"
-            android:id="@+id/nameEditTextId"
-            android:padding="10dp"
+            android:hint="Medicine Name"
+            android:backgroundTint="@color/black"
+            android:id="@+id/medicineNameEditTextId"
+            android:textSize="18sp"
             android:inputType="text"
             android:layout_marginBottom="10dp"
             />
-        <EditText
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Manufacturre"
-            android:id="@+id/manufactureEditTextId"
-            android:padding="10dp"
-            android:layout_marginBottom="10dp"
-            android:inputType="text"
-            />
+            android:layout_height="40dp"
+            android:layout_marginBottom="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="Manufacture"
+                android:layout_marginLeft="3dp"
+                android:textSize="18sp"
+                />
+            <Spinner
+                android:id="@+id/spinnerManufactureId"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginBottom="15dp"/>
+
+        </LinearLayout>
+
+
+
+
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Box pattern"
             android:id="@+id/boxpatternEditTextId"
-            android:padding="10dp"
+            android:textSize="18sp"
             android:inputType="text"
+            android:backgroundTint="@color/black"
             android:layout_marginBottom="10dp"
             />
         <EditText
@@ -46,41 +68,81 @@
             android:layout_height="wrap_content"
             android:hint="Medicine category"
             android:id="@+id/medicineCategoryEditTextId"
-            android:padding="10dp"
+            android:textSize="18sp"
+            android:backgroundTint="@color/black"
             android:inputType="text"
             android:layout_marginBottom="10dp"
             />
-        <EditText
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Medicine Type"
-            android:id="@+id/medicinetypeEditTextId"
-            android:padding="10dp"
-            android:inputType="text"
-            />
+            android:layout_height="40dp"
+            android:layout_marginBottom="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="Medicine Type"
+                android:layout_marginLeft="3dp"
+                android:textSize="18sp"
+                />
+            <Spinner
+                android:textAlignment="textEnd"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:id="@+id/spinnerMedicineTypeId"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="40dp"
+                />
+
+        </LinearLayout>
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Medicine Unit"
+            android:backgroundTint="@color/black"
             android:id="@+id/medicineUnitEditTextId"
-            android:padding="10dp"
+            android:textSize="18sp"
             android:inputType="text"
             />
-        <EditText
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Generic name"
-            android:id="@+id/genericNameEditTextId"
-            android:padding="10dp"
-            android:inputType="text"
-            android:layout_marginBottom="10dp"
-            />
+            android:layout_height="40dp"
+            android:layout_marginBottom="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="Generic Name"
+                android:layout_marginLeft="3dp"
+                android:textSize="18sp"
+                />
+            <Spinner
+                android:textAlignment="textEnd"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:id="@+id/spinnerGenericNameId"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="40dp"
+                />
+
+        </LinearLayout>
+
+
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Sell price"
+            android:textSize="18sp"
+            android:backgroundTint="@color/black"
             android:id="@+id/sellPriceEditTextId"
-            android:padding="10dp"
             android:layout_marginBottom="10dp"
             android:inputType="text"
             />
@@ -88,18 +150,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Menufacture price"
-            android:id="@+id/menufacturePriceEditTextId"
-            android:padding="10dp"
+            android:backgroundTint="@color/black"
+            android:id="@+id/manufacturePriceEditTextId"
             android:layout_marginBottom="10dp"
             android:inputType="text"
+            android:textSize="18sp"
             />
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Shelf Number"
+            android:textSize="18sp"
             android:id="@+id/shelfNumberEditTextId"
-            android:padding="10dp"
             android:layout_marginBottom="10dp"
+            android:backgroundTint="@color/black"
             android:inputType="text"
             />
         <Button
@@ -109,10 +173,21 @@
             android:id="@+id/addMedicineButtonId"
             android:textAllCaps="false"
             android:layout_marginTop="10dp"
-            android:padding="10dp"
+            android:padding="15dp"
             android:textSize="20sp"
-            android:backgroundTint="#348F10"
+            android:backgroundTint="#E65100"
             />
+
+        <Button
+            android:id="@+id/viewMedicineButtonId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="#E65100"
+            android:padding="15dp"
+            android:text="View Medicine"
+            android:textAllCaps="false"
+            android:textSize="20sp" />
 
 
     </LinearLayout>

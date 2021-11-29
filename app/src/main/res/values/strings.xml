@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Pharmacy App</string>
+    <string name="app_name">Smart Pharmacy App</string>
     <string name="uname">User Name</string>
     <string name="pass">Password</string>
     <string name="signinbtn">Sign In</string>

@@ -5,8 +5,31 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class Manufacture extends AppCompatActivity {
+
+    EditText manufactureEditText;
+    Button manufactureSaveButton;
+    DatabaseReference dbref;
+
+    ValueEventListener listener;
+    ArrayList<String> manufacturelist;
+    ArrayAdapter<String> manufactureadapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,7 +42,22 @@ public class Manufacture extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
+        manufactureEditText = findViewById(R.id.manufactureEditTextId);
+
+        manufactureSaveButton = findViewById(R.id.manufactureSaveId);
+
+
+        dbref = FirebaseDatabase.getInstance().getReference(user.getUid()).child("Medicine").child("Manufacture Name");
+
+        manufactureSaveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //saveManufactureData();
+                insertdata();
+            }
+        });
 
     }
 
@@ -35,4 +73,38 @@ public class Manufacture extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    //Insert manufacture data to firebase
+    private void insertdata() {
+        String data=manufactureEditText.getText().toString().trim();
+
+        dbref.push().setValue(data)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+
+                        manufactureEditText.setText("");
+                        Toast.makeText(getApplicationContext(), "Inserted successfully", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+    }
+
+    /*private void saveManufactureData() {
+
+        String key = dbref.push().getKey();
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        String manuName = manufactureEditText.getText().toString().trim();
+
+        manufactureDataHolder obj = new manufactureDataHolder(manuName);
+        FirebaseDatabase dbref= FirebaseDatabase.getInstance();
+        DatabaseReference node = dbref.getReference(user.getUid());
+        node.child("Medicine").child("Manufacture Name").setValue(obj);
+
+
+        manufactureEditText.setText("");
+        Toast.makeText(getApplicationContext(), "Inserted Successful", Toast.LENGTH_LONG).show();
+    }*/
 }

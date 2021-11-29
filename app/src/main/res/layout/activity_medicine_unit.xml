@@ -5,28 +5,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
-    android:padding="10dp"
+    android:gravity="center_horizontal"
+    android:padding="20dp"
     tools:context=".MedicineUnit">
 
     <EditText
+        android:layout_marginTop="50dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Medicine Unit (e.g. Pcs, gm, ml..)"
-        android:padding="10dp"
+
         android:backgroundTint="@color/black"
         />
 
     <Button
-        android:layout_width="150dp"
+        android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:layout_marginTop="10dp"
-        android:text="Save"
+        android:layout_marginTop="20dp"
+        android:text="Save Medicine Unit"
         android:textAllCaps="false"
         android:textSize="20sp"
-        android:layout_margin="50dp"
         android:textColor="@color/white"
-        android:backgroundTint="@color/black"
+        android:backgroundTint="#369511"
         />
 
 </LinearLayout>
