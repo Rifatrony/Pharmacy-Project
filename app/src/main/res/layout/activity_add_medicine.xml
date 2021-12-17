@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="10dp"
-    android:background="@drawable/background_color_for_page"
+    android:background="#E9EDF1"
     tools:context=".AddMedicine">
 
     <LinearLayout
@@ -34,13 +34,13 @@
 
             <TextView
 
-                android:layout_width="wrap_content"
+                android:layout_width="140dp"
                 android:layout_height="40dp"
                 android:text="Manufacture"
                 android:layout_marginLeft="3dp"
                 android:textSize="18sp"
                 />
-            <Spinner
+            <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                 android:id="@+id/spinnerManufactureId"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
@@ -82,13 +82,13 @@
 
             <TextView
 
-                android:layout_width="wrap_content"
+                android:layout_width="140dp"
                 android:layout_height="40dp"
                 android:text="Medicine Type"
                 android:layout_marginLeft="3dp"
                 android:textSize="18sp"
                 />
-            <Spinner
+            <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                 android:textAlignment="textEnd"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
@@ -117,13 +117,13 @@
 
             <TextView
 
-                android:layout_width="wrap_content"
+                android:layout_width="140dp"
                 android:layout_height="40dp"
                 android:text="Generic Name"
                 android:layout_marginLeft="3dp"
                 android:textSize="18sp"
                 />
-            <Spinner
+            <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                 android:textAlignment="textEnd"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
@@ -167,7 +167,8 @@
             android:inputType="text"
             />
         <Button
-            android:layout_width="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:text="Add Medicine"
             android:id="@+id/addMedicineButtonId"
@@ -175,15 +176,16 @@
             android:layout_marginTop="10dp"
             android:padding="15dp"
             android:textSize="20sp"
-            android:backgroundTint="#E65100"
+            android:backgroundTint="#1182DC"
             />
 
         <Button
+            android:layout_gravity="center_horizontal"
             android:id="@+id/viewMedicineButtonId"
-            android:layout_width="match_parent"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:backgroundTint="#E65100"
+            android:backgroundTint="#109A1B"
             android:padding="15dp"
             android:text="View Medicine"
             android:textAllCaps="false"

@@ -6,11 +6,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
 
-    android:background="@drawable/bg2"
+    android:background="@drawable/card_background1"
     tools:context=".LoginActivity">
 
     <ImageView
-        android:layout_marginTop="-8dp"
+        android:layout_marginTop="-20dp"
         android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="270dp"
@@ -59,8 +59,6 @@
             android:inputType="text"
             android:drawablePadding="10dp"
             android:drawableStart="@drawable/email_icon"
-
-
             />
 
         <EditText

@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ListView;
 import android.widget.SearchView;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -18,44 +17,39 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class ViewMedicineActivity extends AppCompatActivity {
+public class ShowNoteActivity extends AppCompatActivity {
 
-    /*ListView listView;*/
-
-    RecyclerView recyclerView;
-    showMedicineAdapter adapter;
+    RecyclerView recview;
+    viewNoteAdapter adapter;
     FloatingActionButton fb;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_medicine);
-
-        this.setTitle("Medicine List");
+        setContentView(R.layout.activity_show_note);
+        this.setTitle("Note");
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-        recyclerView = findViewById(R.id.viewMedicineRecyclerViewId);
+        recview = findViewById(R.id.recview);
+        recview.setLayoutManager(new LinearLayoutManager(this));
         fb = findViewById(R.id.fadd);
         fb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),AddMedicine.class);
+                Intent intent = new Intent(getApplicationContext(),AddNoteActivity.class);
                 startActivity(intent);
             }
         });
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        FirebaseRecyclerOptions<addMedicineDataHolder> options =
-                new FirebaseRecyclerOptions.Builder<addMedicineDataHolder>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference(user.getUid()).child("Medicine").child("Medicine List"), addMedicineDataHolder.class)
+        FirebaseRecyclerOptions<addNoteDataholder> options =
+                new FirebaseRecyclerOptions.Builder<addNoteDataholder>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference(user.getUid()).child("Medicine").child("Note Details"), addNoteDataholder.class)
                         .build();
-        
-        
-        adapter = new showMedicineAdapter(options);
-        recyclerView.setAdapter(adapter);
+
+        adapter = new viewNoteAdapter(options);
+        recview.setAdapter(adapter);
 
     }
 
@@ -70,7 +64,6 @@ public class ViewMedicineActivity extends AppCompatActivity {
         super.onStop();
         adapter.stopListening();
     }
-
 
     // Search Medicine
 
@@ -105,16 +98,17 @@ public class ViewMedicineActivity extends AppCompatActivity {
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-        FirebaseRecyclerOptions<addMedicineDataHolder> options =
-                new FirebaseRecyclerOptions.Builder<addMedicineDataHolder>()
+        FirebaseRecyclerOptions<addNoteDataholder> options =
+                new FirebaseRecyclerOptions.Builder<addNoteDataholder>()
                         .setQuery(FirebaseDatabase.getInstance().getReference(user.getUid())
-                                .child("Medicine").child("Medicine List").orderByChild("m_name")
-                                .startAt(s).endAt(s+"\uf8ff"), addMedicineDataHolder.class)
-                                .build();
+                                .child("Medicine").child("Note Details").orderByChild("title")
+                                .startAt(s).endAt(s+"\uf8ff"), addNoteDataholder.class)
+                        .build();
 
-        adapter = new showMedicineAdapter(options);
+        adapter = new viewNoteAdapter(options);
         adapter.startListening();
-        recyclerView.setAdapter(adapter);
+        recview.setAdapter(adapter);
 
     }
+
 }

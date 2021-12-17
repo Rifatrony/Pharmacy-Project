@@ -16,7 +16,7 @@ import android.widget.Toast;
 public class MainDashBoard extends AppCompatActivity implements View.OnClickListener {
 
     private CardView medicineCardView,stockCardView,purchaseCardView,
-            sellCardView,customerCardView,paymentCardView;
+            sellCardView,customerCardView,paymentCardView, noteCardView;
 
     private AlertDialog.Builder alertDialogBuilder;
 
@@ -40,6 +40,7 @@ public class MainDashBoard extends AppCompatActivity implements View.OnClickList
         sellCardView = findViewById(R.id.sellCardViewId);
         customerCardView = findViewById(R.id.customerCardViewId);
         paymentCardView = findViewById(R.id.paymentCardViewId);
+        noteCardView = findViewById(R.id.noteCardViewId);
 
 
         medicineCardView.setOnClickListener(this);
@@ -48,6 +49,7 @@ public class MainDashBoard extends AppCompatActivity implements View.OnClickList
         sellCardView.setOnClickListener(this);
         customerCardView.setOnClickListener(this);
         paymentCardView.setOnClickListener(this);
+        noteCardView.setOnClickListener(this);
 
 
     }
@@ -74,7 +76,7 @@ public class MainDashBoard extends AppCompatActivity implements View.OnClickList
 
       //set icon
 
-      alertDialogBuilder.setIcon(R.drawable.question);
+      alertDialogBuilder.setIcon(R.drawable.helpicondelete);
 
       alertDialogBuilder.setCancelable(false);
 
@@ -126,10 +128,20 @@ public class MainDashBoard extends AppCompatActivity implements View.OnClickList
         }
         if (view.getId()==R.id.sellCardViewId){
 
+            Intent intent = new Intent(this,SellMedicine.class);
+            startActivity(intent);
+
         }if (view.getId()==R.id.customerCardViewId){
 
         }
         if (view.getId()==R.id.paymentCardViewId){
+
+        }
+        if (view.getId()==R.id.noteCardViewId){
+            Intent intent = new Intent(this,ShowNoteActivity.class);
+            startActivity(intent);
+        }
+        if (view.getId()==R.id.expireCardViewId){
 
         }
 

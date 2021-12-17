@@ -12,6 +12,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PharmacyApp">
         <activity
+            android:name=".SellMedicine"
+            android:exported="false" />
+        <activity
+            android:name=".PurchaseMedicine2"
+            android:exported="false" />
+        <activity
+            android:name=".AddNoteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ShowNoteActivity"
+            android:exported="false" />
+        <activity
             android:name=".SubDeshboard"
             android:exported="true" />
         <activity

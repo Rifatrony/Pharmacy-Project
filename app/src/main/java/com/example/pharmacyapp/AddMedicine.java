@@ -92,6 +92,7 @@ public class AddMedicine extends AppCompatActivity {
         menufactureadapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,menufacturelist);
         menufacturespinner.setAdapter(menufactureadapter);
 
+
         //Generic Name
         gnlist = new ArrayList<>();
         gnadapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,gnlist);
@@ -122,9 +123,6 @@ public class AddMedicine extends AppCompatActivity {
         fetchManufactureData();
         fetchGenericName();
         fetchMedicineType();
-
-
-
     }
 
 
@@ -202,7 +200,6 @@ public class AddMedicine extends AppCompatActivity {
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-
         String m_name = medicineNameEditText.getText().toString().trim();
         String box_pattern = boxPatternEditText.getText().toString().trim();
         String m_category = medicineCategoryEditText.getText().toString().trim();
@@ -210,12 +207,13 @@ public class AddMedicine extends AppCompatActivity {
         String sell_price = sellPriceEditText.getText().toString().trim();
         String manufacture_price = manufacturePriceEditText.getText().toString().trim();
         String shelf_no = shelfNumberEditText.getText().toString().trim();
+
         String s_manufacture = menufacturespinner.getSelectedItem().toString();
-        String s_genericName = gnspinner.getSelectedItem().toString();
         String m_type = medicinetypespinner.getSelectedItem().toString();
+        String s_genericName = gnspinner.getSelectedItem().toString();
+
 
         String key = databaseReference.push().getKey();
-
 
         if (m_name.isEmpty()){
             medicineNameEditText.setError("Required");
@@ -253,7 +251,7 @@ public class AddMedicine extends AppCompatActivity {
             return;
         }
 
-        addMedicineDataHolder obj = new addMedicineDataHolder(m_name,box_pattern,m_category,m_unit,sell_price,manufacture_price,shelf_no,s_manufacture,s_genericName,m_type);
+        addMedicineDataHolder obj = new addMedicineDataHolder(m_name,box_pattern,m_category,m_unit,sell_price,manufacture_price,shelf_no,s_manufacture,m_type,s_genericName);
         FirebaseDatabase addMedicinedb = FirebaseDatabase.getInstance();
         DatabaseReference node = addMedicinedb.getReference(user.getUid());
 

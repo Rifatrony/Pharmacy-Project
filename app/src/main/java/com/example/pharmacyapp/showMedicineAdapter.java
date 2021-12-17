@@ -60,6 +60,7 @@ public class showMedicineAdapter extends FirebaseRecyclerAdapter<addMedicineData
 
 
                 View myView = dialogPlus.getHolderView();
+
                 EditText m_name = myView.findViewById(R.id.mnameid);
                 EditText manu_name = myView.findViewById(R.id.manunameid);
                 EditText box_pattern = myView.findViewById(R.id.boxpid);
@@ -111,7 +112,7 @@ public class showMedicineAdapter extends FirebaseRecyclerAdapter<addMedicineData
                                     @Override
                                     public void onSuccess(Void unused) {
 
-                                        Toast.makeText(holder.m_name.getContext(), "Updated Successfully", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(holder.m_name.getContext(), "Updated Successfully", Toast.LENGTH_LONG).show();
                                         dialogPlus.dismiss();
                                     }
                                 })
@@ -125,7 +126,6 @@ public class showMedicineAdapter extends FirebaseRecyclerAdapter<addMedicineData
                     }
                 });
 
-
             }
         });
 
@@ -136,7 +136,7 @@ public class showMedicineAdapter extends FirebaseRecyclerAdapter<addMedicineData
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(holder.m_name.getContext());
-                builder.setIcon(R.drawable.question);
+                builder.setIcon(R.drawable.delete);
                 builder.setTitle("Delete Medicine");
                 builder.setMessage("Do you really want to delete?");
                 builder.setCancelable(false);
@@ -194,5 +194,4 @@ public class showMedicineAdapter extends FirebaseRecyclerAdapter<addMedicineData
             delete = itemView.findViewById(R.id.deleteId);
         }
     }
-
 }

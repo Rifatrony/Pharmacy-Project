@@ -2,14 +2,14 @@ package com.example.pharmacyapp;
 
 public class addMedicineDataHolder {
     String m_name,box_pattern,m_category,m_unit,sell_price,
-            manufacture_price,shelf_no,s_manufacture,
-            s_genericName,m_type;
+            manufacture_price,shelf_no,s_manufacture,m_type,
+            s_genericName;
 
     addMedicineDataHolder(){
 
     }
 
-    public addMedicineDataHolder(String m_name, String box_pattern, String m_category, String m_unit, String sell_price, String manufacture_price, String shelf_no, String s_manufacture, String s_genericName, String m_type) {
+    public addMedicineDataHolder(String m_name, String box_pattern, String m_category, String m_unit, String sell_price, String manufacture_price, String shelf_no, String s_manufacture, String m_type, String s_genericName) {
         this.m_name = m_name;
         this.box_pattern = box_pattern;
         this.m_category = m_category;
@@ -18,8 +18,8 @@ public class addMedicineDataHolder {
         this.manufacture_price = manufacture_price;
         this.shelf_no = shelf_no;
         this.s_manufacture = s_manufacture;
-        this.s_genericName = s_genericName;
         this.m_type = m_type;
+        this.s_genericName = s_genericName;
     }
 
     public String getM_name() {
@@ -86,19 +86,19 @@ public class addMedicineDataHolder {
         this.s_manufacture = s_manufacture;
     }
 
-    public String getS_genericName() {
-        return s_genericName;
-    }
-
-    public void setS_genericName(String s_genericName) {
-        this.s_genericName = s_genericName;
-    }
-
     public String getM_type() {
         return m_type;
     }
 
     public void setM_type(String m_type) {
         this.m_type = m_type;
+    }
+
+    public String getS_genericName() {
+        return s_genericName;
+    }
+
+    public void setS_genericName(String s_genericName) {
+        this.s_genericName = s_genericName;
     }
 }

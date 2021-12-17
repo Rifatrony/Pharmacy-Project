@@ -12,7 +12,7 @@ import android.view.View;
 public class SubDeshboard extends AppCompatActivity implements View.OnClickListener {
 
     private CardView medicineCategoryCardView, medicineTypeCardView, medicineUnitCardView,
-            genericNameCardView, manufactureCardView, addMedicineCardView;
+            genericNameCardView, manufactureCardView, medicineListCardView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,14 +32,14 @@ public class SubDeshboard extends AppCompatActivity implements View.OnClickListe
         medicineUnitCardView = findViewById(R.id.medicineUnitCardViewId);
         genericNameCardView = findViewById(R.id.genericNameCardViewId);
         manufactureCardView = findViewById(R.id.manufactureCardViewId);
-        addMedicineCardView = findViewById(R.id.addMedicineCardViewId);
+        medicineListCardView = findViewById(R.id.medicineListCardViewId);
 
         medicineCategoryCardView.setOnClickListener(this);
         medicineTypeCardView.setOnClickListener(this);
         medicineUnitCardView.setOnClickListener(this);
         genericNameCardView.setOnClickListener(this);
         manufactureCardView.setOnClickListener(this);
-        addMedicineCardView.setOnClickListener(this);
+        medicineListCardView.setOnClickListener(this);
 
     }
 
@@ -76,10 +76,9 @@ public class SubDeshboard extends AppCompatActivity implements View.OnClickListe
                 Intent intent = new Intent(this,Manufacture.class);
                 startActivity(intent);
             }
-            if (view.getId()==R.id.addMedicineCardViewId){
-                Intent intent = new Intent(this,AddMedicine.class);
+            if (view.getId()==R.id.medicineListCardViewId){
+                Intent intent = new Intent(this,ViewMedicineActivity.class);
                 startActivity(intent);
             }
         }
-
 }

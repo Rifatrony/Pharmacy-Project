@@ -12,11 +12,12 @@
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:orientation="vertical"
+
         >
 
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/addMedicineCardViewId"
+            android:id="@+id/medicineListCardViewId"
             android:padding="10dp"
             android:layout_width="match_parent"
             app:cardCornerRadius="10dp"
@@ -32,7 +33,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Medicine"
+                    android:text="Medicine List"
                     android:textColor="@color/white"
                     android:gravity="center"
                     android:textSize="25sp"
