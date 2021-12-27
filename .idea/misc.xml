@@ -12,6 +12,8 @@
         <entry key="..\:/Pharmacy-Project/app/src/main/res/drawable/card_background4.xml" value="0.14635416666666667" />
         <entry key="..\:/Pharmacy-Project/app/src/main/res/drawable/card_background5.xml" value="0.14635416666666667" />
         <entry key="..\:/Pharmacy-Project/app/src/main/res/drawable/card_background6.xml" value="0.14635416666666667" />
+        <entry key="..\:/Pharmacy-Project/app/src/main/res/layout/activity_accounts.xml" value="0.13958333333333334" />
+        <entry key="..\:/Pharmacy-Project/app/src/main/res/layout/activity_add_account.xml" value="0.152" />
         <entry key="..\:/Pharmacy-Project/app/src/main/res/layout/activity_add_medicine.xml" value="0.16979166666666667" />
         <entry key="..\:/Pharmacy-Project/app/src/main/res/layout/activity_add_note.xml" value="0.1390625" />
         <entry key="..\:/Pharmacy-Project/app/src/main/res/layout/activity_dashboard.xml" value="0.165625" />
@@ -25,16 +27,22 @@
         <entry key="..\:/Pharmacy-Project/app/src/main/res/layout/activity_medicine_type.xml" value="0.1546875" />
         <entry key="..\:/Pharmacy-Project/app/src/main/res/layout/activity_medicine_unit.xml" value="0.1546875" />
         <entry key="..\:/Pharmacy-Project/app/src/main/res/layout/activity_note.xml" value="0.12708333333333333" />
-        <entry key="..\:/Pharmacy-Project/app/src/main/res/layout/activity_purchase_medicine.xml" value="0.16979166666666667" />
+        <entry key="..\:/Pharmacy-Project/app/src/main/res/layout/activity_purchase_medicine.xml" value="0.2" />
         <entry key="..\:/Pharmacy-Project/app/src/main/res/layout/activity_purchase_medicine2.xml" value="0.2" />
         <entry key="..\:/Pharmacy-Project/app/src/main/res/layout/activity_sell_medicine.xml" value="0.1390625" />
         <entry key="..\:/Pharmacy-Project/app/src/main/res/layout/activity_show_note.xml" value="0.13958333333333334" />
-        <entry key="..\:/Pharmacy-Project/app/src/main/res/layout/activity_sign_up.xml" value="0.1" />
+        <entry key="..\:/Pharmacy-Project/app/src/main/res/layout/activity_sign_up.xml" value="0.2" />
+        <entry key="..\:/Pharmacy-Project/app/src/main/res/layout/activity_stock_medicine.xml" value="0.25416666666666665" />
         <entry key="..\:/Pharmacy-Project/app/src/main/res/layout/activity_sub_deshboard.xml" value="0.136" />
         <entry key="..\:/Pharmacy-Project/app/src/main/res/layout/activity_view_medicine.xml" value="0.13385416666666666" />
         <entry key="..\:/Pharmacy-Project/app/src/main/res/layout/edit_note_dialog_content.xml" value="0.264" />
+        <entry key="..\:/Pharmacy-Project/app/src/main/res/layout/fragment_purchase_details.xml" value="0.1" />
+        <entry key="..\:/Pharmacy-Project/app/src/main/res/layout/fragment_purchase_medicine.xml" value="0.25416666666666665" />
+        <entry key="..\:/Pharmacy-Project/app/src/main/res/layout/fragment_rec.xml" value="0.24010416666666667" />
+        <entry key="..\:/Pharmacy-Project/app/src/main/res/layout/fragment_stock_details.xml" value="0.25416666666666665" />
         <entry key="..\:/Pharmacy-Project/app/src/main/res/layout/nav_header.xml" value="0.13385416666666666" />
         <entry key="..\:/Pharmacy-Project/app/src/main/res/layout/note_sample_layout.xml" value="0.16" />
+        <entry key="..\:/Pharmacy-Project/app/src/main/res/layout/sample_stock_layout.xml" value="0.25416666666666665" />
         <entry key="..\:/Pharmacy-Project/app/src/main/res/layout/view_medicine_dialog_content.xml" value="0.2" />
         <entry key="..\:/Pharmacy-Project/app/src/main/res/layout/view_medicine_sample_layout.xml" value="0.152" />
         <entry key="..\:/Pharmacy-Project/app/src/main/res/menu/nav_menu_layout.xml" value="0.25025641025641027" />

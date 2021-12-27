@@ -12,6 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PharmacyApp">
         <activity
+            android:name=".StockMedicine"
+            android:exported="false" />
+        <activity
+            android:name=".AddAccount"
+            android:exported="false" />
+        <activity
+            android:name=".Accounts"
+            android:exported="false" />
+        <activity
             android:name=".SellMedicine"
             android:exported="false" />
         <activity

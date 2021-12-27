@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+   android:padding="10dp"
+    tools:context=".StockDetails">
+
+
+        <LinearLayout
+            android:background="#AFE49A"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Medicine Name:  "
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Demo medicine name"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/detailsMedicineNameTextView"
+                android:textSize="20sp"
+                android:fontFamily="sans-serif-condensed-light"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_marginBottom="8dp"
+                />
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Manufacture Name: "
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            />
+
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Demo manufacture"
+            android:id="@+id/detailsManufactureNameTextView"
+            android:textSize="17sp"
+            android:textColor="@color/black"
+            android:layout_marginBottom="5dp"
+            />
+    </LinearLayout>
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Buy Date: "
+            android:textSize="17sp"
+            android:textColor="@color/black"
+            android:layout_gravity="center_vertical"
+            />
+
+        <TextView
+            android:gravity="center_horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Demo buy date"
+            android:id="@+id/detailsBuyDateTextView"
+            android:textSize="17sp"
+            android:textColor="@color/black"
+            android:layout_marginBottom="5dp"
+            />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp"
+        android:gravity="center_horizontal">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Payment Type: "
+            android:textSize="17sp"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Demo payment type"
+            android:id="@+id/detailsPaymentTypeTextView"
+            android:textSize="17sp"
+            android:textColor="@color/black"
+            android:layout_marginBottom="5dp"
+            />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Batch Id: "
+            android:textSize="17sp"
+            android:textColor="@color/black"
+            android:layout_marginBottom="5dp"
+            />
+
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Demo batchId"
+            android:id="@+id/detailsBatchIdTextView"
+            android:textSize="17sp"
+            android:textColor="@color/black"
+            android:layout_marginBottom="5dp"
+            />
+
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Expire date: "
+            android:textSize="17sp"
+            android:textColor="@color/black"
+            android:layout_marginBottom="5dp"
+            />
+
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Demo expire date"
+            android:id="@+id/detailsExpireDateTextView"
+            android:textSize="17sp"
+            android:textColor="@color/black"
+            android:layout_marginBottom="5dp"
+            />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Quantity: "
+            android:textSize="17sp"
+            android:textColor="@color/black"
+            android:layout_marginBottom="5dp"
+            />
+
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Demo quantity"
+            android:id="@+id/detailsQuantityTextView"
+            android:textSize="17sp"
+            android:textColor="@color/black"
+            android:layout_marginBottom="5dp"
+            />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Manufacture Price: "
+            android:textSize="17sp"
+            android:textColor="@color/black"
+            android:layout_marginBottom="5dp"
+            />
+
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Demo manufacture Price"
+            android:id="@+id/detailsManufacturePriceTextView"
+            android:textSize="17sp"
+            android:textColor="@color/black"
+            android:layout_marginBottom="5dp"
+            />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Buy date: "
+            android:textSize="17sp"
+            android:textColor="@color/black"
+            android:layout_marginBottom="5dp"
+            />
+
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Demo buy date"
+            android:id="@+id/detailsTotalPriceTextView"
+            android:textSize="17sp"
+            android:textColor="@color/black"
+            android:layout_marginBottom="5dp"
+            />
+
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

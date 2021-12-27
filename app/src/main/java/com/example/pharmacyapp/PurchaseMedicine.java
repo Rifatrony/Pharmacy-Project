@@ -2,18 +2,28 @@ package com.example.pharmacyapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.tabs.TabItem;
+import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -28,28 +38,33 @@ import java.util.Objects;
 
 public class PurchaseMedicine extends AppCompatActivity {
 
+    /*DatePickerDialog.OnDateSetListener setListener;*/
 
-    DatePickerDialog.OnDateSetListener setListener;
-
-    Spinner manufactureSpinner, medicineNameSpinner;
+    Spinner manufactureSpinner, medicineNameSpinner, paymentTypeSpinner;
+    TextView storeQuantityTextView, totalPrice;
 
     EditText  buyDateEditText, batchIdEditText, expireDateEditText,
-            quantityEditText, unitPriceEditText, manufacturePriceEditText;
+            quantityEditText, manufacturePriceEditText;
 
     Button saveButton;
 
-    DatabaseReference db;
-    DatabaseReference dbref;
-    DatabaseReference databaseReference;
+
+    //String storeQuantity;
+
+    DatabaseReference db, dbAccount, dbStock, dbref, databaseReference, dbTv;
+
 
     //ValueEventListener listener4;
     ValueEventListener listener;
 
     ArrayList<String> menufacturelist;
     ArrayList<String> medicineNamelist;
+    ArrayList<String> manufacturerPriceList;
+    ArrayList<String> paymentTypeList;
 
     ArrayAdapter<String> menufactureadapter;
     ArrayAdapter<String> medicineNameadapter;
+    ArrayAdapter<String> paymentTypeAdapter;
 
 
     @Override
@@ -68,18 +83,18 @@ public class PurchaseMedicine extends AppCompatActivity {
 
         manufactureSpinner = findViewById(R.id.spinnerManufactureId);
         medicineNameSpinner = findViewById(R.id.spinnerMedicineNameId);
+        paymentTypeSpinner = findViewById(R.id.spinnerPaymentTypeId);
         saveButton = findViewById(R.id.saveButtonId);
 
-
-
-
+        //storeQuantityTextView = findViewById(R.id.storeQuantityId);
 
         buyDateEditText = findViewById(R.id.buyDateId);
         batchIdEditText = findViewById(R.id.batchId);
         expireDateEditText = findViewById(R.id.expierDateId);
         quantityEditText = findViewById(R.id.quantityId);
-        unitPriceEditText = findViewById(R.id.unitPriceId);
         manufacturePriceEditText = findViewById(R.id.manufacturePriceId);
+
+        totalPrice = findViewById(R.id.totalPriceId);
 
         Calendar calendar = Calendar.getInstance();
         final int year = calendar.get(Calendar.YEAR);
@@ -95,8 +110,17 @@ public class PurchaseMedicine extends AppCompatActivity {
         db = FirebaseDatabase.getInstance().getReference(user.getUid())
                 .child("Medicine").child("Medicine List");
 
+        dbAccount = FirebaseDatabase.getInstance().getReference(user.getUid())
+                .child("Medicine").child("Accounts");
+
+        dbTv = FirebaseDatabase.getInstance().getReference(user.getUid())
+                .child(":Medicine").child("Medicine List");
+
         databaseReference = FirebaseDatabase.getInstance().getReference(user.getUid())
                 .child("Medicine").child("Purchase Medicine");
+
+        dbStock = FirebaseDatabase.getInstance().getReference(user.getUid())
+                .child("Medicine").child("Stock Medicine");
 
         //Manufacture
         menufacturelist = new ArrayList<>();
@@ -105,6 +129,10 @@ public class PurchaseMedicine extends AppCompatActivity {
 
         //Medicine Name
         medicineNamelist = new ArrayList<>();
+        manufacturerPriceList = new ArrayList<>();
+
+        //Payment type
+        paymentTypeList = new ArrayList<>();
 
         // Date picker of buy medicine date
 
@@ -144,18 +172,25 @@ public class PurchaseMedicine extends AppCompatActivity {
 
         fetchManufactureData();
         fetchMedicineNameData();
-
+        fetchPaymentTypeData();
 
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 insertPurchaseMedicine();
-
+            }
+        });
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                insertIntoStock();
             }
         });
 
     }
+
+
+
 
     //Back button on top navbar
     @Override
@@ -174,6 +209,9 @@ public class PurchaseMedicine extends AppCompatActivity {
         listener = dbref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                /*menufacturelist.add(0, "Choose Manufacture");*/
+
                 for (DataSnapshot menudata : snapshot.getChildren())
                     menufacturelist.add(Objects.requireNonNull(menudata.getValue()).toString());
 
@@ -185,9 +223,7 @@ public class PurchaseMedicine extends AppCompatActivity {
 
             }
         });
-
     }
-
 
     // fetch medicine name
 
@@ -196,21 +232,19 @@ public class PurchaseMedicine extends AppCompatActivity {
         db.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot medicineNamedata : snapshot.getChildren()){
 
+                /*medicineNamelist.add(0,"Choose Medicine Name");*/
+
+                for (DataSnapshot medicineNamedata : snapshot.getChildren()){
 
                     addMedicineDataHolder data = medicineNamedata.getValue(addMedicineDataHolder.class);
                     if (data != null)
                     {
                         medicineNamelist.add(data.getM_name());
-
+                        manufacturerPriceList.add(data.getManufacture_price());
                     }
-
                 }
-
-                /*  System.out.println("List SIze ----> "+ medicineNamelist.size());*//**/
-
-                setMedicineAdapter(medicineNamelist);
+                setMedicineAdapter(medicineNamelist, manufacturerPriceList);
             }
 
             @Override
@@ -219,15 +253,90 @@ public class PurchaseMedicine extends AppCompatActivity {
                 System.out.println("Failed Message ------------"+error.getMessage());
             }
         });
+    }
+
+    private void setMedicineAdapter(ArrayList<String> list, ArrayList<String> manufacturerPriceList) {
+        medicineNameadapter = new ArrayAdapter<>(PurchaseMedicine.this, android.R.layout.simple_spinner_dropdown_item, list);
+        medicineNameSpinner.setAdapter(medicineNameadapter);
+
+        medicineNameSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                String mPrice = manufacturerPriceList.get(position);
+
+                manufacturePriceEditText.setText(mPrice);
+
+                int price = Integer.parseInt(manufacturePriceEditText.getText().toString());
+
+                TextWatcher textWatcher = new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                        if (!manufacturePriceEditText.getText().toString().equals("") && !quantityEditText.getText().toString().equals("")){
+
+                            int temp1 = Integer.parseInt(quantityEditText.getText().toString());
+
+                            totalPrice.setText(String.valueOf(price * temp1));
+                        }
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable editable) {
+
+                    }
+                };
+                manufacturePriceEditText.addTextChangedListener(textWatcher);
+                quantityEditText.addTextChangedListener(textWatcher);
+
+
+                /*mPrice = mPrice.replaceAll("[^-?0-9]+","");*/
+
+                /*mfTextview.setText(manufacturerPriceList.get(position)+"/-");*/
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
+    private void fetchPaymentTypeData() {
+
+        dbAccount.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                /*paymentTypeList.add(0,"Choose Account");*/
+
+                for (DataSnapshot paymentType : snapshot.getChildren()){
+                    addAccountDataHolder data = paymentType.getValue(addAccountDataHolder.class);
+                    if (data != null){
+                        paymentTypeList.add(data.getBank_name());
+                    }
+                }
+                setAccountAdapter(paymentTypeList);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
     }
 
-    private void setMedicineAdapter(ArrayList<String> list) {
+    private void setAccountAdapter(ArrayList<String> paymentTypeList) {
 
-
-        medicineNameadapter = new ArrayAdapter<>(PurchaseMedicine.this, android.R.layout.simple_spinner_dropdown_item, list);
-        medicineNameSpinner.setAdapter(medicineNameadapter);
-        // medicineNameadapter.notifyDataSetChanged();
+        paymentTypeAdapter = new ArrayAdapter<>(PurchaseMedicine.this, android.R.layout.simple_spinner_dropdown_item,paymentTypeList);
+        paymentTypeSpinner.setAdapter(paymentTypeAdapter);
 
     }
 
@@ -241,13 +350,20 @@ public class PurchaseMedicine extends AppCompatActivity {
         String s_manufacture = manufactureSpinner.getSelectedItem().toString();
         String s_medicine_name = medicineNameSpinner.getSelectedItem().toString();
         String buy_date = buyDateEditText.getText().toString().trim();
+        //Add new
+        String payment_type = paymentTypeSpinner.getSelectedItem().toString();
         String batch_id = batchIdEditText.getText().toString().trim();
         String expire_date = expireDateEditText.getText().toString().trim();
-        String quantity = quantityEditText.getText().toString().trim();
-        String unit_price = unitPriceEditText.getText().toString().trim();
-        String manufacture_price = manufacturePriceEditText.getText().toString().trim();
 
-        purchaseMedicineDataHolder obj = new purchaseMedicineDataHolder(s_manufacture, s_medicine_name, buy_date, batch_id, expire_date, quantity, unit_price, manufacture_price);
+        //Here will come stock quantity from stock table
+
+        String quantity = quantityEditText.getText().toString().trim();
+
+        //Delete unit price from here
+
+        String manufacture_price = manufacturePriceEditText.getText().toString().trim();
+        String total_price = totalPrice.getText().toString();
+        purchaseMedicineDataHolder obj = new purchaseMedicineDataHolder(s_manufacture, s_medicine_name, buy_date, payment_type, batch_id, expire_date, quantity, manufacture_price, total_price);
 
         assert user != null;
         databaseReference= FirebaseDatabase.getInstance().getReference(user.getUid());
@@ -258,7 +374,6 @@ public class PurchaseMedicine extends AppCompatActivity {
         batchIdEditText.setText("");
         expireDateEditText.setText("");
         quantityEditText.setText("");
-        unitPriceEditText.setText("");
         manufacturePriceEditText.setText("");
 
         if (buy_date.isEmpty()){
@@ -271,33 +386,68 @@ public class PurchaseMedicine extends AppCompatActivity {
             batchIdEditText.setError("Required");
             batchIdEditText.requestFocus();
             return;
-        } if (batch_id.isEmpty()){
+        }
+
+        if (batch_id.isEmpty()){
             batchIdEditText.setError("Required");
             batchIdEditText.requestFocus();
             return;
         }
+
         if (expire_date.isEmpty()){
             batchIdEditText.setError("Required");
             batchIdEditText.requestFocus();
             return;
-        } if (quantity.isEmpty()){
+        }
+
+        if (quantity.isEmpty()){
             quantityEditText.setError("Required");
             quantityEditText.requestFocus();
             return;
         }
-        if (unit_price.isEmpty()){
-            unitPriceEditText.setError("Required");
-            unitPriceEditText.requestFocus();
-            return;
-        }
+
+
         if (manufacture_price.isEmpty()){
             manufacturePriceEditText.setError("Required");
             manufacturePriceEditText.requestFocus();
             return;
         }
 
-
         Toast.makeText(getApplicationContext(),"Medicine Purchase Successfully",Toast.LENGTH_LONG).show();
+
+    }
+
+    private void insertIntoStock() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        String key = databaseReference.push().getKey();
+
+        String manufactureName = manufactureSpinner.getSelectedItem().toString();
+        String medicineName = medicineNameSpinner.getSelectedItem().toString();
+        String buyDate = buyDateEditText.getText().toString();
+        String paymentType = paymentTypeSpinner.getSelectedItem().toString();
+        String batchId = batchIdEditText.getText().toString().trim();
+        String expireDate = expireDateEditText.getText().toString();
+        String quantity = quantityEditText.getText().toString().trim();
+        String manufacturePrice = manufacturePriceEditText.getText().toString();
+        String total_Price = totalPrice.getText().toString();
+
+
+        StockMedicineDataHolder obj = new StockMedicineDataHolder(manufactureName, medicineName, buyDate, paymentType, batchId, expireDate, quantity, manufacturePrice, total_Price);
+
+        assert user != null;
+        databaseReference= FirebaseDatabase.getInstance().getReference(user.getUid());
+        assert key != null;
+        databaseReference.child("Medicine").child("Stock Medicine").child(key).setValue(obj);
+
+        if (buyDate.isEmpty()){
+            buyDateEditText.setError("Required");
+            buyDateEditText.requestFocus();
+            return;
+        }
+
+        Toast.makeText(getApplicationContext(),"Medicine Added To Stock",Toast.LENGTH_LONG).show();
+
 
     }
 

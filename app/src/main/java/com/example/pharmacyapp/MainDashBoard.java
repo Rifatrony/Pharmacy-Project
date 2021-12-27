@@ -119,6 +119,9 @@ public class MainDashBoard extends AppCompatActivity implements View.OnClickList
         }
         if (view.getId()==R.id.stockCardViewId){
 
+            Intent intent = new Intent(this,StockMedicine.class);
+            startActivity(intent);
+
         }
         if (view.getId()==R.id.purchaseCardViewId){
 
@@ -135,6 +138,9 @@ public class MainDashBoard extends AppCompatActivity implements View.OnClickList
 
         }
         if (view.getId()==R.id.paymentCardViewId){
+
+            Intent intent = new Intent(getApplicationContext(),Accounts.class);
+            startActivity(intent);
 
         }
         if (view.getId()==R.id.noteCardViewId){

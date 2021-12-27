@@ -18,12 +18,13 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private EditText signInEmailEditText, signInPasswordEditText;
+    private TextInputLayout signInEmailEditText, signInPasswordEditText;
     private Button signInButton;
     private TextView signUpTextView;
     private ProgressBar progressBar;
@@ -80,27 +81,27 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void userLogin() {
-        String email = signInEmailEditText.getText().toString().trim();
-        String password = signInPasswordEditText.getText().toString().trim();
+        String email = signInEmailEditText.getEditText().getText().toString().trim();
+        String password = signInPasswordEditText.getEditText().getText().toString().trim();
 
         if (email.isEmpty()){
-            signInEmailEditText.setError("Enter email address");
-            signInEmailEditText.requestFocus();
+            signInEmailEditText.getEditText().setError("Enter email address");
+            signInEmailEditText.getEditText().requestFocus();
             return;
         }
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            signInEmailEditText.setError("Enter a valid email address");
-            signInEmailEditText.requestFocus();
+            signInEmailEditText.getEditText().setError("Enter a valid email address");
+            signInEmailEditText.getEditText().requestFocus();
             return;
         }
         if (password.isEmpty()){
-            signInPasswordEditText.setError("Enter password");
-            signInPasswordEditText.requestFocus();
+            signInPasswordEditText.getEditText().setError("Enter password");
+            signInPasswordEditText.getEditText().requestFocus();
             return;
         }
         if (password.length()<6){
-            signInPasswordEditText.setError("Minimum password length is 6");
-            signInPasswordEditText.requestFocus();
+            signInPasswordEditText.getEditText().setError("Minimum password length is 6");
+            signInPasswordEditText.getEditText().requestFocus();
             return;
         }
         progressBar.setVisibility(View.VISIBLE);
@@ -113,8 +114,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     Intent intent = new Intent(LoginActivity.this,MainDashBoard.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
-                    signInEmailEditText.setText("");
-                    signInPasswordEditText.setText("");
+                    signInEmailEditText.getEditText().setText("");
+                    signInPasswordEditText.getEditText().setText("");
                 }
                 else {
                     Toast.makeText(getApplicationContext(), "Login Failed", Toast.LENGTH_SHORT).show();

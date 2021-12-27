@@ -64,7 +64,7 @@
                     android:layout_margin="10dp"
                     android:layout_height="150dp"
                     app:cardCornerRadius="15dp"
-                    app:cardBackgroundColor="#66F17D">
+                    app:cardBackgroundColor="@color/card_background_color">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -99,7 +99,7 @@
                     android:layout_margin="10dp"
                     android:layout_height="150dp"
                     app:cardCornerRadius="15dp"
-                    app:cardBackgroundColor="#66F17D">
+                    app:cardBackgroundColor="@color/card_background_color">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -142,7 +142,7 @@
                     android:layout_margin="10dp"
                     android:layout_height="150dp"
                     app:cardCornerRadius="15dp"
-                    app:cardBackgroundColor="#66F17D">
+                    app:cardBackgroundColor="@color/card_background_color">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -175,7 +175,7 @@
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:layout_margin="10dp"
-                    app:cardBackgroundColor="#66F17D"
+                    app:cardBackgroundColor="@color/card_background_color"
                     app:cardCornerRadius="15dp">
 
                     <LinearLayout
@@ -218,7 +218,7 @@
                     android:layout_margin="10dp"
                     android:layout_height="150dp"
                     app:cardCornerRadius="15dp"
-                    app:cardBackgroundColor="#66F17D">
+                    app:cardBackgroundColor="@color/card_background_color">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -252,7 +252,7 @@
                     android:layout_margin="10dp"
                     android:layout_height="150dp"
                     app:cardCornerRadius="15dp"
-                    app:cardBackgroundColor="#66F17D">
+                    app:cardBackgroundColor="@color/card_background_color">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -270,7 +270,7 @@
                             android:layout_marginTop="10dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Payment"
+                            android:text="Account"
                             android:textColor="@color/white"
                             android:layout_gravity="center_horizontal"
                             android:textSize="18sp"
@@ -294,7 +294,7 @@
                     android:layout_margin="10dp"
                     android:layout_height="150dp"
                     app:cardCornerRadius="15dp"
-                    app:cardBackgroundColor="#66F17D">
+                    app:cardBackgroundColor="@color/card_background_color">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -328,7 +328,7 @@
                     android:layout_margin="10dp"
                     android:layout_height="150dp"
                     app:cardCornerRadius="15dp"
-                    app:cardBackgroundColor="#66F17D">
+                    app:cardBackgroundColor="@color/card_background_color">
 
                     <LinearLayout
                         android:layout_width="wrap_content"

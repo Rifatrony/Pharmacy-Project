@@ -15,7 +15,6 @@
 
         >
 
-
         <androidx.cardview.widget.CardView
             android:id="@+id/medicineListCardViewId"
             android:padding="10dp"

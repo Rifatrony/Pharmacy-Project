@@ -18,6 +18,8 @@
         />
 
     <EditText
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Title"
@@ -26,6 +28,8 @@
         />
 
     <EditText
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Description"
@@ -33,9 +37,13 @@
         android:layout_marginTop="10dp"
         />
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="140dp"
+        android:layout_marginTop="10dp"
+        android:layout_height="60dp"
         android:text="Submit"
+        android:textAllCaps="false"
+        android:backgroundTint="#21BC3B"
         android:id="@+id/updateBtnId"/>
 
 </LinearLayout>

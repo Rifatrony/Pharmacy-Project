@@ -10,4 +10,8 @@
 
     <color name="blue">#0971C3</color>
     <color name="card_background">#16DFCC</color>
+    <color name="card_background_color">#66F17D</color>
+    <color name="bordercolor">#2196F3</color>
+    <color name="btnbgcolor">#FF9800</color>
+
 </resources>

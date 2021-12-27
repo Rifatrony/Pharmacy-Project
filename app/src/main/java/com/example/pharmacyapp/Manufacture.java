@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -23,7 +24,7 @@ import java.util.ArrayList;
 
 public class Manufacture extends AppCompatActivity {
 
-    EditText manufactureEditText;
+    TextInputLayout manufactureEditText;
     Button manufactureSaveButton;
     DatabaseReference dbref;
 
@@ -76,14 +77,14 @@ public class Manufacture extends AppCompatActivity {
 
     //Insert manufacture data to firebase
     private void insertdata() {
-        String data=manufactureEditText.getText().toString().trim();
+        String data=manufactureEditText.getEditText().getText().toString().trim();
 
         dbref.push().setValue(data)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
 
-                        manufactureEditText.setText("");
+                        manufactureEditText.getEditText().setText("");
                         Toast.makeText(getApplicationContext(), "Inserted successfully", Toast.LENGTH_SHORT).show();
                     }
                 });

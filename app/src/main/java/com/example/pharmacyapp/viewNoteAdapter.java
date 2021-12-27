@@ -48,7 +48,7 @@ public class viewNoteAdapter extends FirebaseRecyclerAdapter<addNoteDataholder,v
             public void onClick(View view) {
                 final DialogPlus dialogPlus = DialogPlus.newDialog(holder.title.getContext())
                         .setContentHolder(new ViewHolder(R.layout.edit_note_dialog_content))
-                        .setExpanded(true,550)
+                        .setExpanded(true,650)
                         .create();
 
                 View myview = dialogPlus.getHolderView();
