@@ -11,57 +11,215 @@
         android:layout_height="match_parent"
         android:padding="10dp"
         android:orientation="vertical">
-        <LinearLayout
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/customerNameId"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="15dp">
+            android:layout_marginBottom="10dp"
+            android:hint="Customer Name"
+            android:textColorHint="@color/bordercolor">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/medicineNameId"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:hint="Medicine Name"
+            android:textColorHint="@color/bordercolor">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/sellDateId"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:hint="Date"
+            android:textColorHint="@color/bordercolor">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Medicine Name"
-                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:text="Payment Type"
                 android:textSize="20sp"
                 />
             <com.toptoche.searchablespinnerlibrary.SearchableSpinner
-                android:id="@+id/spinnerMedicineNameId"
+                android:id="@+id/spinnerPaymentTypeId"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/spinner_background"
                 android:textAlignment="textEnd"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="40dp"
                 />
 
         </LinearLayout>
 
-        <TextView
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:gravity="center_vertical"
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:text="@string/quantity"
+                android:textSize="20sp"
+                />
+            <TextView
+                android:gravity="center"
+                android:id="@+id/storeQuantityId"
+                android:layout_gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/text_background"
+                android:layout_marginLeft="40dp"
+                android:textSize="20sp"
+                />
+
+        </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/sellQuantityId"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="25sp"
-            android:text="Demo"
-            android:textStyle="bold|italic"
-            android:layout_marginBottom="15dp"
-            />
+            android:layout_marginBottom="10dp"
+            android:hint="Sell Quantity"
+            android:textColorHint="@color/bordercolor">
 
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
 
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/unitSellPriceId"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Date"
-            android:inputType="datetime"
-            android:layout_marginBottom="15dp"
-            />
+            android:layout_marginBottom="10dp"
+            android:hint="Unit Sell Price"
+            android:textColorHint="@color/bordercolor">
 
-        <Button
-            android:layout_gravity="center_horizontal"
-            android:layout_width="300dp"
-            android:layout_height="70dp"
-            android:text="Sell"
-            android:textSize="22sp"
-            android:textAllCaps="false"
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:gravity="center_vertical"
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:text="Total Price"
+                android:textSize="20sp"
+                />
+            <TextView
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:background="@drawable/text_background"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="40dp"
+                android:id="@+id/totalSellPriceId"
+                android:textSize="20sp"
+                />
+        </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/paidAmountId"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:hint="Paid Amount"
+            android:textColorHint="@color/bordercolor">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:gravity="center_vertical"
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:text="Due Amount"
+                android:textSize="20sp"
+                />
+            <TextView
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:background="@drawable/text_background"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="40dp"
+                android:id="@+id/dueAmountId"
+                android:textSize="20sp"
+                />
+
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/sellBtnId"
-            />
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="#277BBD"
+            android:padding="10dp"
+            android:text="Save"
+            android:textColor="#000"
+            android:textSize="20sp" />
 
     </LinearLayout>
 

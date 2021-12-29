@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -43,7 +44,7 @@ public class PurchaseMedicine extends AppCompatActivity {
     Spinner manufactureSpinner, medicineNameSpinner, paymentTypeSpinner;
     TextView storeQuantityTextView, totalPrice;
 
-    EditText  buyDateEditText, batchIdEditText, expireDateEditText,
+    TextInputLayout buyDateEditText, batchIdEditText, expireDateEditText,
             quantityEditText, manufacturePriceEditText;
 
     Button saveButton;
@@ -74,6 +75,9 @@ public class PurchaseMedicine extends AppCompatActivity {
 
 
         this.setTitle("Purchase");
+
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
 
         //Add back Button on tool bar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -136,7 +140,7 @@ public class PurchaseMedicine extends AppCompatActivity {
 
         // Date picker of buy medicine date
 
-        buyDateEditText.setOnClickListener(new View.OnClickListener() {
+        buyDateEditText.getEditText().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(PurchaseMedicine.this, new DatePickerDialog.OnDateSetListener() {
@@ -144,7 +148,7 @@ public class PurchaseMedicine extends AppCompatActivity {
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                         month = month +1;
                         String date = day+"/"+month+"/"+year;
-                        buyDateEditText.setText(date);
+                        buyDateEditText.getEditText().setText(date);
                     }
                 },year,month,day);
 
@@ -154,7 +158,7 @@ public class PurchaseMedicine extends AppCompatActivity {
 
         // Date picker of expire medicine date
 
-        expireDateEditText.setOnClickListener(new View.OnClickListener() {
+        expireDateEditText.getEditText().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(PurchaseMedicine.this, new DatePickerDialog.OnDateSetListener() {
@@ -162,7 +166,7 @@ public class PurchaseMedicine extends AppCompatActivity {
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                         month = month +1;
                         String date = day+"/"+month+"/"+year;
-                        expireDateEditText.setText(date);
+                        expireDateEditText.getEditText().setText(date);
                     }
                 },year,month,day);
 
@@ -178,19 +182,11 @@ public class PurchaseMedicine extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 insertPurchaseMedicine();
-            }
-        });
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                insertIntoStock();
+                //insertIntoStock();
             }
         });
 
     }
-
-
-
 
     //Back button on top navbar
     @Override
@@ -266,9 +262,9 @@ public class PurchaseMedicine extends AppCompatActivity {
 
                 String mPrice = manufacturerPriceList.get(position);
 
-                manufacturePriceEditText.setText(mPrice);
+                manufacturePriceEditText.getEditText().setText(mPrice);
 
-                int price = Integer.parseInt(manufacturePriceEditText.getText().toString());
+                int price = Integer.parseInt(manufacturePriceEditText.getEditText().getText().toString());
 
                 TextWatcher textWatcher = new TextWatcher() {
                     @Override
@@ -278,9 +274,9 @@ public class PurchaseMedicine extends AppCompatActivity {
 
                     @Override
                     public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                        if (!manufacturePriceEditText.getText().toString().equals("") && !quantityEditText.getText().toString().equals("")){
+                        if (!manufacturePriceEditText.getEditText().getText().toString().equals("") && !quantityEditText.getEditText().getText().toString().equals("")){
 
-                            int temp1 = Integer.parseInt(quantityEditText.getText().toString());
+                            int temp1 = Integer.parseInt(quantityEditText.getEditText().getText().toString());
 
                             totalPrice.setText(String.valueOf(price * temp1));
                         }
@@ -291,8 +287,8 @@ public class PurchaseMedicine extends AppCompatActivity {
 
                     }
                 };
-                manufacturePriceEditText.addTextChangedListener(textWatcher);
-                quantityEditText.addTextChangedListener(textWatcher);
+                manufacturePriceEditText.getEditText().addTextChangedListener(textWatcher);
+                quantityEditText.getEditText().addTextChangedListener(textWatcher);
 
 
                 /*mPrice = mPrice.replaceAll("[^-?0-9]+","");*/
@@ -349,19 +345,19 @@ public class PurchaseMedicine extends AppCompatActivity {
 
         String s_manufacture = manufactureSpinner.getSelectedItem().toString();
         String s_medicine_name = medicineNameSpinner.getSelectedItem().toString();
-        String buy_date = buyDateEditText.getText().toString().trim();
+        String buy_date = buyDateEditText.getEditText().getText().toString().trim();
         //Add new
         String payment_type = paymentTypeSpinner.getSelectedItem().toString();
-        String batch_id = batchIdEditText.getText().toString().trim();
-        String expire_date = expireDateEditText.getText().toString().trim();
+        String batch_id = batchIdEditText.getEditText().getText().toString().trim();
+        String expire_date = expireDateEditText.getEditText().getText().toString().trim();
 
         //Here will come stock quantity from stock table
 
-        String quantity = quantityEditText.getText().toString().trim();
+        String quantity = quantityEditText.getEditText().getText().toString().trim();
 
         //Delete unit price from here
 
-        String manufacture_price = manufacturePriceEditText.getText().toString().trim();
+        String manufacture_price = manufacturePriceEditText.getEditText().getText().toString().trim();
         String total_price = totalPrice.getText().toString();
         purchaseMedicineDataHolder obj = new purchaseMedicineDataHolder(s_manufacture, s_medicine_name, buy_date, payment_type, batch_id, expire_date, quantity, manufacture_price, total_price);
 
@@ -370,11 +366,11 @@ public class PurchaseMedicine extends AppCompatActivity {
         assert key != null;
         databaseReference.child("Medicine").child("Purchase Medicine").child(key).setValue(obj);
 
-        buyDateEditText.setText("");
-        batchIdEditText.setText("");
-        expireDateEditText.setText("");
-        quantityEditText.setText("");
-        manufacturePriceEditText.setText("");
+        buyDateEditText.getEditText().setText("");
+        batchIdEditText.getEditText().setText("");
+        expireDateEditText.getEditText().setText("");
+        quantityEditText.getEditText().setText("");
+        manufacturePriceEditText.getEditText().setText("");
 
         if (buy_date.isEmpty()){
             buyDateEditText.setError("Required");
@@ -417,7 +413,7 @@ public class PurchaseMedicine extends AppCompatActivity {
 
     }
 
-    private void insertIntoStock() {
+    /*private void insertIntoStock() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         String key = databaseReference.push().getKey();
@@ -449,6 +445,6 @@ public class PurchaseMedicine extends AppCompatActivity {
         Toast.makeText(getApplicationContext(),"Medicine Added To Stock",Toast.LENGTH_LONG).show();
 
 
-    }
+    }*/
 
 }
