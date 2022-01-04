@@ -325,6 +325,7 @@
                 <androidx.cardview.widget.CardView
                     android:id="@+id/expireCardViewId"
                     android:layout_width="150dp"
+                    android:clickable="true"
                     android:layout_margin="10dp"
                     android:layout_height="150dp"
                     app:cardCornerRadius="15dp"

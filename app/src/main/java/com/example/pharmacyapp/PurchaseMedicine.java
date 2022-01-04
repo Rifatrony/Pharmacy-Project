@@ -42,13 +42,12 @@ public class PurchaseMedicine extends AppCompatActivity {
     /*DatePickerDialog.OnDateSetListener setListener;*/
 
     Spinner manufactureSpinner, medicineNameSpinner, paymentTypeSpinner;
-    TextView storeQuantityTextView, totalPrice;
+    TextView stockQuantityTextView, totalPrice, dueAmount;
 
     TextInputLayout buyDateEditText, batchIdEditText, expireDateEditText,
-            quantityEditText, manufacturePriceEditText;
+            quantityEditText, manufacturePriceEditText, purchasePaidAmount;
 
     Button saveButton;
-
 
     //String storeQuantity;
 
@@ -59,12 +58,17 @@ public class PurchaseMedicine extends AppCompatActivity {
     ValueEventListener listener;
 
     ArrayList<String> menufacturelist;
+
     ArrayList<String> medicineNamelist;
+    //ArrayList<String> stockMedicineNameList;
     ArrayList<String> manufacturerPriceList;
+    ArrayList<String> stockQuantityList;
     ArrayList<String> paymentTypeList;
 
     ArrayAdapter<String> menufactureadapter;
     ArrayAdapter<String> medicineNameadapter;
+    //ArrayAdapter<String> stockMedicineNameAdapter;
+
     ArrayAdapter<String> paymentTypeAdapter;
 
 
@@ -75,9 +79,6 @@ public class PurchaseMedicine extends AppCompatActivity {
 
 
         this.setTitle("Purchase");
-
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
 
         //Add back Button on tool bar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -96,9 +97,12 @@ public class PurchaseMedicine extends AppCompatActivity {
         batchIdEditText = findViewById(R.id.batchId);
         expireDateEditText = findViewById(R.id.expierDateId);
         quantityEditText = findViewById(R.id.quantityId);
+        dueAmount = findViewById(R.id.purchaseDueAmountId);
+        purchasePaidAmount = findViewById(R.id.purchasPaidAmountId);
         manufacturePriceEditText = findViewById(R.id.manufacturePriceId);
 
         totalPrice = findViewById(R.id.totalPriceId);
+        stockQuantityTextView = findViewById(R.id.stockQuantityTextViewId);
 
         Calendar calendar = Calendar.getInstance();
         final int year = calendar.get(Calendar.YEAR);
@@ -134,13 +138,15 @@ public class PurchaseMedicine extends AppCompatActivity {
         //Medicine Name
         medicineNamelist = new ArrayList<>();
         manufacturerPriceList = new ArrayList<>();
+        stockQuantityList = new ArrayList<>();
+
 
         //Payment type
         paymentTypeList = new ArrayList<>();
 
         // Date picker of buy medicine date
 
-        buyDateEditText.getEditText().setOnClickListener(new View.OnClickListener() {
+        buyDateEditText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(PurchaseMedicine.this, new DatePickerDialog.OnDateSetListener() {
@@ -158,7 +164,7 @@ public class PurchaseMedicine extends AppCompatActivity {
 
         // Date picker of expire medicine date
 
-        expireDateEditText.getEditText().setOnClickListener(new View.OnClickListener() {
+        expireDateEditText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(PurchaseMedicine.this, new DatePickerDialog.OnDateSetListener() {
@@ -177,16 +183,17 @@ public class PurchaseMedicine extends AppCompatActivity {
         fetchManufactureData();
         fetchMedicineNameData();
         fetchPaymentTypeData();
+        //fetchStockQuantity();
 
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 insertPurchaseMedicine();
-                //insertIntoStock();
             }
         });
-
     }
+
+
 
     //Back button on top navbar
     @Override
@@ -205,8 +212,6 @@ public class PurchaseMedicine extends AppCompatActivity {
         listener = dbref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                /*menufacturelist.add(0, "Choose Manufacture");*/
 
                 for (DataSnapshot menudata : snapshot.getChildren())
                     menufacturelist.add(Objects.requireNonNull(menudata.getValue()).toString());
@@ -228,8 +233,6 @@ public class PurchaseMedicine extends AppCompatActivity {
         db.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                /*medicineNamelist.add(0,"Choose Medicine Name");*/
 
                 for (DataSnapshot medicineNamedata : snapshot.getChildren()){
 
@@ -262,6 +265,8 @@ public class PurchaseMedicine extends AppCompatActivity {
 
                 String mPrice = manufacturerPriceList.get(position);
 
+                //int paid_amount = Integer.parseInt(purchasePaidAmount.getEditText().getText().toString());
+
                 manufacturePriceEditText.getEditText().setText(mPrice);
 
                 int price = Integer.parseInt(manufacturePriceEditText.getEditText().getText().toString());
@@ -277,8 +282,34 @@ public class PurchaseMedicine extends AppCompatActivity {
                         if (!manufacturePriceEditText.getEditText().getText().toString().equals("") && !quantityEditText.getEditText().getText().toString().equals("")){
 
                             int temp1 = Integer.parseInt(quantityEditText.getEditText().getText().toString());
+                            int res= price*temp1;
 
-                            totalPrice.setText(String.valueOf(price * temp1));
+                            totalPrice.setText(String.valueOf(res));
+
+                            TextWatcher textWatcher1 = new TextWatcher() {
+                                @Override
+                                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                                }
+
+                                @Override
+                                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                                    if (!totalPrice.getText().toString().equals("") && !purchasePaidAmount.getEditText().getText().toString().equals("")) {
+
+                                        int temp2 = Integer.parseInt(purchasePaidAmount.getEditText().getText().toString());
+                                        int result = res - temp2;
+
+                                        dueAmount.setText(String.valueOf(result));
+                                    }
+                                }
+
+                                @Override
+                                public void afterTextChanged(Editable editable) {
+
+                                }
+                            };
+                            totalPrice.addTextChangedListener(textWatcher1);
+                            purchasePaidAmount.getEditText().addTextChangedListener(textWatcher1);
                         }
                     }
 
@@ -287,14 +318,9 @@ public class PurchaseMedicine extends AppCompatActivity {
 
                     }
                 };
+
                 manufacturePriceEditText.getEditText().addTextChangedListener(textWatcher);
                 quantityEditText.getEditText().addTextChangedListener(textWatcher);
-
-
-                /*mPrice = mPrice.replaceAll("[^-?0-9]+","");*/
-
-                /*mfTextview.setText(manufacturerPriceList.get(position)+"/-");*/
-
             }
 
             @Override
@@ -305,12 +331,9 @@ public class PurchaseMedicine extends AppCompatActivity {
     }
 
     private void fetchPaymentTypeData() {
-
         dbAccount.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                /*paymentTypeList.add(0,"Choose Account");*/
 
                 for (DataSnapshot paymentType : snapshot.getChildren()){
                     addAccountDataHolder data = paymentType.getValue(addAccountDataHolder.class);
@@ -326,8 +349,8 @@ public class PurchaseMedicine extends AppCompatActivity {
 
             }
         });
-
     }
+
 
     private void setAccountAdapter(ArrayList<String> paymentTypeList) {
 
@@ -335,6 +358,84 @@ public class PurchaseMedicine extends AppCompatActivity {
         paymentTypeSpinner.setAdapter(paymentTypeAdapter);
 
     }
+
+    /*private void fetchStockQuantity() {
+
+        dbStock.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                for (DataSnapshot medicineNameData : snapshot.getChildren()){
+
+                    StockMedicineDataHolder data = medicineNameData.getValue(StockMedicineDataHolder.class);
+                    if (data != null)
+                    {
+                        //stockMedicineNameList.add(data.getMedicineName());
+                        stockQuantityList.add(data.getStock_quantity());
+                    }
+                }
+                setStockQuantityAdapter(medicineNamelist, stockQuantityList);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }*/
+
+
+    /*private void setStockQuantityAdapter(ArrayList<String> list, ArrayList<String> stockQuantityList) {
+        medicineNameadapter = new ArrayAdapter<>(PurchaseMedicine.this, android.R.layout.simple_spinner_dropdown_item, list);
+
+        medicineNameSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                String sq = stockQuantityList.get((position));
+                int ab = Integer.parseInt(sq);
+
+                //int paid_amount = Integer.parseInt(purchasePaidAmount.getEditText().getText().toString());
+
+                stockQuantityTextView.setText(String.valueOf(ab));
+
+                //int price = Integer.parseInt(manufacturePriceEditText.getEditText().getText().toString());
+
+                *//*TextWatcher textWatcher = new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                        if (!manufacturePriceEditText.getEditText().getText().toString().equals("") && !quantityEditText.getEditText().getText().toString().equals("")){
+
+                            int temp1 = Integer.parseInt(quantityEditText.getEditText().getText().toString());
+                            int res= price*temp1;
+
+                            totalPrice.setText(String.valueOf(res));
+                        }
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable editable) {
+
+                    }
+                };
+
+                manufacturePriceEditText.getEditText().addTextChangedListener(textWatcher);
+                quantityEditText.getEditText().addTextChangedListener(textWatcher);*//*
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }*/
+
 
     //purchase medicine
     private void insertPurchaseMedicine() {
@@ -350,21 +451,41 @@ public class PurchaseMedicine extends AppCompatActivity {
         String payment_type = paymentTypeSpinner.getSelectedItem().toString();
         String batch_id = batchIdEditText.getEditText().getText().toString().trim();
         String expire_date = expireDateEditText.getEditText().getText().toString().trim();
+        String quantity = quantityEditText.getEditText().getText().toString().trim();
+        String manufacture_price = manufacturePriceEditText.getEditText().getText().toString().trim();
+
+        String total_price = totalPrice.getText().toString();
+        String purchase_paid_amount = purchasePaidAmount.getEditText().getText().toString().trim();
+        String purchase_due_amount = dueAmount.getText().toString().trim();
+
 
         //Here will come stock quantity from stock table
 
-        String quantity = quantityEditText.getEditText().getText().toString().trim();
+        String manufactureName = s_manufacture;
+        String medicineName = s_medicine_name;
+        String buyDate = buy_date;
+        String paymentType = payment_type;
+        String batchId = batch_id;
+        String expireDate = expire_date;
+        String total_quantity = quantityEditText.getEditText().getText().toString().trim();
+        String manufacturePrice = manufacturePriceEditText.getEditText().getText().toString().trim();
+        String total_Price = totalPrice.getText().toString();
 
         //Delete unit price from here
 
-        String manufacture_price = manufacturePriceEditText.getEditText().getText().toString().trim();
-        String total_price = totalPrice.getText().toString();
-        purchaseMedicineDataHolder obj = new purchaseMedicineDataHolder(s_manufacture, s_medicine_name, buy_date, payment_type, batch_id, expire_date, quantity, manufacture_price, total_price);
+        purchaseMedicineDataHolder obj = new purchaseMedicineDataHolder(s_manufacture, s_medicine_name, buy_date, payment_type, batch_id, expire_date, quantity, manufacture_price, total_price, purchase_paid_amount, purchase_due_amount);
 
         assert user != null;
         databaseReference= FirebaseDatabase.getInstance().getReference(user.getUid());
         assert key != null;
         databaseReference.child("Medicine").child("Purchase Medicine").child(key).setValue(obj);
+
+        StockMedicineDataHolder data = new StockMedicineDataHolder(manufactureName, medicineName, buyDate, paymentType, batchId, expireDate, total_quantity, manufacturePrice, total_Price);
+
+        assert user != null;
+        dbStock= FirebaseDatabase.getInstance().getReference(user.getUid());
+        assert key != null;
+        dbStock.child("Medicine").child("Stock Medicine").child(key).setValue(data);
 
         buyDateEditText.getEditText().setText("");
         batchIdEditText.getEditText().setText("");
@@ -409,42 +530,8 @@ public class PurchaseMedicine extends AppCompatActivity {
             return;
         }
 
-        Toast.makeText(getApplicationContext(),"Medicine Purchase Successfully",Toast.LENGTH_LONG).show();
-
-    }
-
-    /*private void insertIntoStock() {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-        String key = databaseReference.push().getKey();
-
-        String manufactureName = manufactureSpinner.getSelectedItem().toString();
-        String medicineName = medicineNameSpinner.getSelectedItem().toString();
-        String buyDate = buyDateEditText.getText().toString();
-        String paymentType = paymentTypeSpinner.getSelectedItem().toString();
-        String batchId = batchIdEditText.getText().toString().trim();
-        String expireDate = expireDateEditText.getText().toString();
-        String quantity = quantityEditText.getText().toString().trim();
-        String manufacturePrice = manufacturePriceEditText.getText().toString();
-        String total_Price = totalPrice.getText().toString();
-
-
-        StockMedicineDataHolder obj = new StockMedicineDataHolder(manufactureName, medicineName, buyDate, paymentType, batchId, expireDate, quantity, manufacturePrice, total_Price);
-
-        assert user != null;
-        databaseReference= FirebaseDatabase.getInstance().getReference(user.getUid());
-        assert key != null;
-        databaseReference.child("Medicine").child("Stock Medicine").child(key).setValue(obj);
-
-        if (buyDate.isEmpty()){
-            buyDateEditText.setError("Required");
-            buyDateEditText.requestFocus();
-            return;
-        }
-
+        Toast.makeText(getApplicationContext(),"Medicine Purchase Successfully",Toast.LENGTH_SHORT).show();
         Toast.makeText(getApplicationContext(),"Medicine Added To Stock",Toast.LENGTH_LONG).show();
 
-
-    }*/
-
+    }
 }

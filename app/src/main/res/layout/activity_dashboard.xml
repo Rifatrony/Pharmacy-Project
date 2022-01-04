@@ -4,23 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/drawerId"
-    tools:openDrawer="start"
+    android:id="@+id/drawer"
+    android:fitsSystemWindows="true"
     tools:context=".DashboardActivity">
 
-    <com.google.android.material.navigation.NavigationView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/navigationId"
-        android:background="@color/white"
+        android:orientation="vertical">
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/toolbar"
+            android:fitsSystemWindows="true"
+            android:background="#C61616"/>
+    </LinearLayout>
 
-        app:menu="@menu/nav_menu_layout"
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_gravity="start"
-
-        app:headerLayout="@layout/nav_header"
-        >
-
-    </com.google.android.material.navigation.NavigationView>
+        android:id="@+id/navView"
+        android:fitsSystemWindows="true"
+        app:menu="@menu/nav_menu_layout"
+        app:headerLayout="@layout/nav_header"/>
 
 
 </androidx.drawerlayout.widget.DrawerLayout>

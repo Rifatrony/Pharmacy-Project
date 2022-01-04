@@ -16,7 +16,7 @@ import android.widget.Toast;
 public class MainDashBoard extends AppCompatActivity implements View.OnClickListener {
 
     private CardView medicineCardView,stockCardView,purchaseCardView,
-            sellCardView,customerCardView,paymentCardView, noteCardView;
+            sellCardView,customerCardView,paymentCardView, noteCardView, expireCardView;
 
     private AlertDialog.Builder alertDialogBuilder;
 
@@ -41,6 +41,7 @@ public class MainDashBoard extends AppCompatActivity implements View.OnClickList
         customerCardView = findViewById(R.id.customerCardViewId);
         paymentCardView = findViewById(R.id.paymentCardViewId);
         noteCardView = findViewById(R.id.noteCardViewId);
+        expireCardView = findViewById(R.id.expireCardViewId);
 
 
         medicineCardView.setOnClickListener(this);
@@ -50,6 +51,7 @@ public class MainDashBoard extends AppCompatActivity implements View.OnClickList
         customerCardView.setOnClickListener(this);
         paymentCardView.setOnClickListener(this);
         noteCardView.setOnClickListener(this);
+        expireCardView.setOnClickListener(this);
 
 
     }
@@ -117,40 +119,40 @@ public class MainDashBoard extends AppCompatActivity implements View.OnClickList
             Intent intent = new Intent(this,SubDeshboard.class);
             startActivity(intent);
         }
-        if (view.getId()==R.id.stockCardViewId){
 
+        if (view.getId()==R.id.stockCardViewId){
             Intent intent = new Intent(this,StockMedicine.class);
             startActivity(intent);
-
         }
-        if (view.getId()==R.id.purchaseCardViewId){
 
+        if (view.getId()==R.id.purchaseCardViewId){
             Intent intent = new Intent(this,PurchaseMedicine.class);
             startActivity(intent);
-
         }
-        if (view.getId()==R.id.sellCardViewId){
 
+        if (view.getId()==R.id.sellCardViewId){
             Intent intent = new Intent(this,SellMedicine.class);
             startActivity(intent);
-
-        }if (view.getId()==R.id.customerCardViewId){
-
         }
-        if (view.getId()==R.id.paymentCardViewId){
 
+        if (view.getId()==R.id.customerCardViewId){
+            Intent intent = new Intent(this,CustomerActivity.class);
+            startActivity(intent);
+        }
+
+        if (view.getId()==R.id.paymentCardViewId){
             Intent intent = new Intent(getApplicationContext(),Accounts.class);
             startActivity(intent);
-
         }
+
         if (view.getId()==R.id.noteCardViewId){
             Intent intent = new Intent(this,ShowNoteActivity.class);
             startActivity(intent);
         }
+
         if (view.getId()==R.id.expireCardViewId){
-
+            Intent intent = new Intent(this,ExpireSoonActivity.class);
+            startActivity(intent);
         }
-
-
     }
 }

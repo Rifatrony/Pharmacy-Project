@@ -73,7 +73,6 @@ public class ViewMedicineActivity extends AppCompatActivity {
 
 
     // Search Medicine
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.search_menu,menu);

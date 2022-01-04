@@ -15,24 +15,24 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 
-
-public class RecFragment extends Fragment {
+public class CustomerFirstFragment extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
     private String mParam1;
     private String mParam2;
-    RecyclerView recView;
-    StockAdapter adapter;
+    RecyclerView customerRecyclerView;
+    CustomerAdapter adapter;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-    public RecFragment() {
+
+    public CustomerFirstFragment() {
 
     }
 
-    public static RecFragment newInstance(String param1, String param2) {
-        RecFragment fragment = new RecFragment();
+    public static CustomerFirstFragment newInstance(String param1, String param2) {
+        CustomerFirstFragment fragment = new CustomerFirstFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -53,18 +53,18 @@ public class RecFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_rec, container, false);
+        View view = inflater.inflate(R.layout.fragment_customer_first, container, false);
 
-        recView = (RecyclerView) view.findViewById(R.id.recViewId);
-        recView.setLayoutManager(new LinearLayoutManager(getContext()));
+        customerRecyclerView = view.findViewById(R.id.customerRecyclerViewId);
+        customerRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        FirebaseRecyclerOptions<StockMedicineDataHolder> options =
-                new FirebaseRecyclerOptions.Builder<StockMedicineDataHolder>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference(user.getUid()).child("Medicine").child("Stock Medicine"), StockMedicineDataHolder.class)
+        FirebaseRecyclerOptions<SellMedicineDataHolder> options =
+                new FirebaseRecyclerOptions.Builder<SellMedicineDataHolder>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference(user.getUid()).child("Medicine").child("Sell Medicine"), SellMedicineDataHolder.class)
                         .build();
 
-        adapter = new StockAdapter(options);
-        recView.setAdapter(adapter);
+        adapter = new CustomerAdapter(options);
+        customerRecyclerView.setAdapter(adapter);
 
         return view;
     }
@@ -80,6 +80,5 @@ public class RecFragment extends Fragment {
         super.onStop();
         adapter.stopListening();
     }
-
 
 }

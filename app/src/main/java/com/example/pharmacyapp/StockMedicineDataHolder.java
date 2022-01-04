@@ -2,19 +2,19 @@ package com.example.pharmacyapp;
 
 public class StockMedicineDataHolder {
 
-    String manufactureName, medicineName, buyDate, paymentType, batchId, expireDate, quantity, manufacturePrice, total_Price;
+    String manufactureName, medicineName, buyDate, paymentType, batchId, expireDate, stock_quantity, manufacturePrice, total_Price;
 
     public StockMedicineDataHolder() {
     }
 
-    public StockMedicineDataHolder(String manufactureName, String medicineName, String buyDate, String paymentType, String batchId, String expireDate, String quantity, String manufacturePrice, String total_Price) {
+    public StockMedicineDataHolder(String manufactureName, String medicineName, String buyDate, String paymentType, String batchId, String expireDate, String stock_quantity, String manufacturePrice, String total_Price) {
         this.manufactureName = manufactureName;
         this.medicineName = medicineName;
         this.buyDate = buyDate;
         this.paymentType = paymentType;
         this.batchId = batchId;
         this.expireDate = expireDate;
-        this.quantity = quantity;
+        this.stock_quantity = stock_quantity;
         this.manufacturePrice = manufacturePrice;
         this.total_Price = total_Price;
     }
@@ -67,12 +67,12 @@ public class StockMedicineDataHolder {
         this.expireDate = expireDate;
     }
 
-    public String getQuantity() {
-        return quantity;
+    public String getStock_quantity() {
+        return stock_quantity;
     }
 
-    public void setQuantity(String quantity) {
-        this.quantity = quantity;
+    public void setStock_quantity(String stock_quantity) {
+        this.stock_quantity = stock_quantity;
     }
 
     public String getManufacturePrice() {

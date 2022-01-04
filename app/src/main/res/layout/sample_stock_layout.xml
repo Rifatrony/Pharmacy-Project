@@ -6,10 +6,7 @@
     app:cardElevation="8dp"
     app:cardBackgroundColor="#F5F6F8"
     app:cardCornerRadius="15dp"
-    android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp"
-    android:layout_marginTop="16dp"
-    android:layout_marginBottom="8dp">
+    android:layout_margin="8dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,7 +14,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:layout_margin="10dp"
+            android:layout_marginLeft="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Demo medicine name"
@@ -26,7 +23,7 @@
             android:fontFamily="sans-serif-condensed-light"
             android:textStyle="bold"
             android:textColor="@color/black"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="6dp"
             />
         <TextView
             android:layout_marginLeft="10dp"
@@ -39,17 +36,36 @@
             android:layout_marginBottom="5dp"
             />
 
-        <TextView
-            android:layout_marginLeft="10dp"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Demo buy date"
-            android:id="@+id/buyDateTextView"
-            android:textSize="17sp"
-            android:textColor="@color/black"
-            android:layout_marginBottom="5dp"
-            />
+            android:layout_marginLeft="10dp"
+            android:orientation="horizontal">
 
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Stock: "
+                android:textSize="17sp"
+                android:textColor="@color/black"
+                android:layout_marginBottom="5dp"
+                android:layout_marginRight="3dp"
+                />
+
+            <TextView
+
+                android:layout_marginLeft="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Demo stock"
+                android:id="@+id/stockTextView"
+                android:textSize="17sp"
+                android:textColor="@color/black"
+                android:layout_marginBottom="5dp"
+                />
+
+        </LinearLayout>
 
     </LinearLayout>
 

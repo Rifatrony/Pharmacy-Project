@@ -85,8 +85,8 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textEmailAddress" />
+                    android:layout_height="50dp"
+                    android:inputType="datetime" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -125,7 +125,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:inputType="numberDecimal" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -136,13 +136,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:hint="Expier Date"
+                android:hint="Expire Date"
                 android:textColorHint="@color/bordercolor">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text" />
+                    android:inputType="datetime" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -156,12 +156,12 @@
                     android:gravity="center_vertical"
                     android:layout_width="155dp"
                     android:layout_height="match_parent"
-                    android:text="@string/quantity"
+                    android:text="Stock Quantity"
                     android:textSize="20sp"
                     />
                 <TextView
                     android:gravity="center"
-                    android:id="@+id/storeQuantityId"
+                    android:id="@+id/stockQuantityTextViewId"
                     android:layout_gravity="center_vertical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -178,7 +178,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:hint="Quantity"
+                android:hint="Purchase Quantity"
                 android:textColorHint="@color/bordercolor">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -232,7 +232,7 @@
             </LinearLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/paidAmountId"
+                android:id="@+id/purchasPaidAmountId"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -265,7 +265,7 @@
                     android:background="@drawable/text_background"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="40dp"
-                    android:id="@+id/dueAmountId"
+                    android:id="@+id/purchaseDueAmountId"
                     android:textSize="20sp"
                     />
 
@@ -280,7 +280,7 @@
                 android:layout_marginBottom="20dp"
                 android:background="#277BBD"
                 android:padding="10dp"
-                android:text="Save"
+                android:text="Purchase"
                 android:textColor="#000"
                 android:textSize="20sp" />
 
