@@ -58,8 +58,6 @@ public class GenericName extends AppCompatActivity {
                 insertdata();
             }
         });
-
-
     }
 
     //Add back button tool bar
@@ -73,7 +71,6 @@ public class GenericName extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
     private void insertdata() {
         String data=genericNameEditText.getText().toString().trim();
 
@@ -86,6 +83,5 @@ public class GenericName extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Inserted successfully", Toast.LENGTH_SHORT).show();
                     }
                 });
-
     }
 }

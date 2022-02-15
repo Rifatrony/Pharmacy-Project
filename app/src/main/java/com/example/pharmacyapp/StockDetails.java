@@ -65,24 +65,17 @@ public class StockDetails extends Fragment {
 
         TextView detailsMedicineNameTextView = view.findViewById(R.id.detailsMedicineNameTextView);
         TextView detailsManufactureNameTextView = view.findViewById(R.id.detailsManufactureNameTextView);
-        TextView detailsBuyDateTextView = view.findViewById(R.id.detailsBuyDateTextView);
-        TextView detailsPaymentTypeTextView = view.findViewById(R.id.detailsPaymentTypeTextView);
-        TextView detailsBatchIdTextView = view.findViewById(R.id.detailsBatchIdTextView);
+
         TextView detailsExpireDateTextView = view.findViewById(R.id.detailsExpireDateTextView);
         TextView detailsQuantityTextView = view.findViewById(R.id.detailsQuantityTextView);
         TextView detailsManufacturePriceTextView = view.findViewById(R.id.detailsManufacturePriceTextView);
-        TextView detailsTotalPriceTextView = view.findViewById(R.id.detailsTotalPriceTextView);
 
         detailsMedicineNameTextView.setText(medicineName);
         detailsManufactureNameTextView.setText(manufactureName);
-        detailsBuyDateTextView.setText(buyDate);
-        detailsPaymentTypeTextView.setText(paymentType);
-        detailsBatchIdTextView.setText(batchId);
+
         detailsExpireDateTextView.setText(expireDate);
         detailsQuantityTextView.setText(quantity);
         detailsManufacturePriceTextView.setText(manufacturePrice);
-        detailsTotalPriceTextView.setText(totalPrice);
-
         return view;
     }
 

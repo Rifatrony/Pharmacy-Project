@@ -4,14 +4,19 @@ public class purchaseMedicineDataHolder {
 
     String s_manufacture, s_medicine_name,
             buy_date, payment_type, batch_id, expire_date,
-            quantity, manufacture_price, total_price, purchase_paid_amount, purchase_due_amount;
+            quantity, manufacture_price, total_price, purchase_paid_amount, purchase_due_amount, purchase_Uid;
 
     public purchaseMedicineDataHolder() {
 
 
     }
 
-    public purchaseMedicineDataHolder(String s_manufacture, String s_medicine_name, String buy_date, String payment_type, String batch_id, String expire_date, String quantity, String manufacture_price, String total_price, String purchase_paid_amount, String purchase_due_amount) {
+    public purchaseMedicineDataHolder(String s_manufacture, String s_medicine_name, String buy_date,
+                                      String payment_type, String batch_id, String expire_date,
+                                      String quantity, String manufacture_price, String total_price,
+                                      String purchase_paid_amount, String purchase_due_amount, String purchase_Uid) {
+
+
         this.s_manufacture = s_manufacture;
         this.s_medicine_name = s_medicine_name;
         this.buy_date = buy_date;
@@ -23,6 +28,8 @@ public class purchaseMedicineDataHolder {
         this.total_price = total_price;
         this.purchase_paid_amount = purchase_paid_amount;
         this.purchase_due_amount = purchase_due_amount;
+        this.purchase_Uid = purchase_Uid;
+
     }
 
     public String getS_manufacture() {
@@ -111,5 +118,13 @@ public class purchaseMedicineDataHolder {
 
     public void setPurchase_due_amount(String purchase_due_amount) {
         this.purchase_due_amount = purchase_due_amount;
+    }
+
+    public String getPurchase_Uid() {
+        return purchase_Uid;
+    }
+
+    public void setPurchase_Uid(String purchase_Uid) {
+        this.purchase_Uid = purchase_Uid;
     }
 }

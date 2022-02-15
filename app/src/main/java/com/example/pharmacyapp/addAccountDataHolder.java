@@ -2,18 +2,21 @@ package com.example.pharmacyapp;
 
 public class addAccountDataHolder {
 
-    String bank_name, account_name, account_number,account_type, branch, opening_balance;
+    String bank_name, account_name, account_number,account_type, branch, opening_balance, uid;
 
     public addAccountDataHolder() {
+
     }
 
-    public addAccountDataHolder(String bank_name, String account_name, String account_number, String account_type, String branch, String opening_balance) {
+    public addAccountDataHolder(String bank_name, String account_name, String account_number, String account_type, String branch, String opening_balance, String uid) {
         this.bank_name = bank_name;
         this.account_name = account_name;
         this.account_number = account_number;
         this.account_type = account_type;
         this.branch = branch;
         this.opening_balance = opening_balance;
+        this.uid = uid;
+
     }
 
     public String getBank_name() {
@@ -62,5 +65,12 @@ public class addAccountDataHolder {
 
     public void setOpening_balance(String opening_balance) {
         this.opening_balance = opening_balance;
+    }
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 }

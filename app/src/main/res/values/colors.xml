@@ -7,10 +7,16 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="white1">#FFF</color>
+    <color name="offWhite">#F7F0F3</color>
 
     <color name="blue">#0971C3</color>
+    <color name="red">#EF0A0A</color>
+    <color name="pink">#F50A7F</color>
+
     <color name="card_background">#16DFCC</color>
-    <color name="card_background_color">#66F17D</color>
+    <color name="card_background_color">#58DA34</color>
+    <color name="dashboard_top_background_color">#FD50AC</color>
     <color name="bordercolor">#2196F3</color>
     <color name="btnbgcolor">#FF9800</color>
 

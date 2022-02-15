@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:hint="Customer Name"
+            android:hint="@string/customer_Name"
             android:textColorHint="@color/bordercolor">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -55,21 +55,15 @@
         </LinearLayout>
 
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/sellDateId"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        <EditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
+            android:id="@+id/sellDateId"
+            android:hint="@string/sell_Date"
+            android:background="@drawable/edit_text_background"
+            android:paddingLeft="10dp"
             android:layout_marginBottom="10dp"
-            android:hint="Date"
-            android:textColorHint="@color/bordercolor">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="datetime" />
-
-        </com.google.android.material.textfield.TextInputLayout>
+            />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -81,7 +75,7 @@
                 android:gravity="center_vertical"
                 android:layout_width="150dp"
                 android:layout_height="match_parent"
-                android:text="Payment Type"
+                android:text="@string/payment_type"
                 android:textSize="20sp"
                 />
             <com.toptoche.searchablespinnerlibrary.SearchableSpinner
@@ -103,12 +97,11 @@
             android:orientation="horizontal">
 
             <TextView
-                android:gravity="center_vertical"
-                android:layout_width="150dp"
+                android:layout_width="156dp"
                 android:layout_height="match_parent"
-                android:text="Stock Quantity"
-                android:textSize="20sp"
-                />
+                android:gravity="center_vertical"
+                android:text="@string/stock_Quantity"
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/stockQuantityId"
@@ -128,7 +121,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:hint="Sell Quantity"
+            android:hint="@string/sell_Quantity"
             android:textColorHint="@color/bordercolor">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -144,7 +137,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:hint="Unit Sell Price"
+            android:hint="@string/unit_Sell_Price"
             android:textColorHint="@color/bordercolor">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -164,7 +157,7 @@
                 android:gravity="center_vertical"
                 android:layout_width="150dp"
                 android:layout_height="match_parent"
-                android:text="Total Price"
+                android:text="@string/total_Price"
                 android:textSize="20sp"
                 />
             <EditText
@@ -184,7 +177,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:hint="Paid Amount"
+            android:hint="@string/paid_Amount"
             android:textColorHint="@color/bordercolor">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -204,7 +197,7 @@
                 android:gravity="center_vertical"
                 android:layout_width="150dp"
                 android:layout_height="match_parent"
-                android:text="Due Amount"
+                android:text="@string/due_Amount"
                 android:textSize="20sp"
                 />
             <EditText
@@ -228,7 +221,7 @@
             android:layout_marginBottom="20dp"
             android:background="#277BBD"
             android:padding="10dp"
-            android:text="Sell"
+            android:text="@string/sell_btn"
             android:textColor="#000"
             android:textSize="20sp" />
 

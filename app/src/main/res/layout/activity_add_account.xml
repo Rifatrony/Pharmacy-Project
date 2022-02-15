@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,7 +9,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:hint="Bank name"
+            android:hint="@string/bank_Name"
             android:textColorHint="@color/bordercolor">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -40,7 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:hint="Account name"
+            android:hint="@string/account_Name"
             android:textColorHint="@color/bordercolor">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -56,7 +56,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:hint="Account Number"
+            android:hint="@string/account_Number"
             android:textColorHint="@color/bordercolor">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -72,7 +72,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:hint="Account Type"
+            android:hint="@string/account_Type"
             android:textColorHint="@color/bordercolor">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -88,7 +88,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:hint="Branch Name"
+            android:hint="@string/branch_Name"
             android:textColorHint="@color/bordercolor">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -104,7 +104,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:hint="Opening Balance"
+            android:hint="@string/opening_Balance"
             android:textColorHint="@color/bordercolor">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -123,7 +123,7 @@
             android:layout_marginTop="20dp"
             android:background="#277BBD"
             android:padding="10dp"
-            android:text="Save"
+            android:text="@string/save"
             android:textColor="#000"
             android:textSize="20sp" />
 
@@ -198,4 +198,4 @@
 
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

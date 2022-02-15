@@ -13,6 +13,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -51,6 +53,22 @@ public class AddMedicine extends AppCompatActivity {
     ArrayAdapter<String> gnadapter;
     ArrayAdapter<String> mtypeadapter;
 
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+    String m_name ;
+    String box_pattern ;
+    String m_category;
+    String m_unit;
+    String sell_price ;
+    String manufacture_price ;
+    String shelf_no;
+
+    String s_manufacture;
+    String m_type;
+    String s_genericName ;
+    String uid ;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,7 +98,7 @@ public class AddMedicine extends AppCompatActivity {
         gnspinner = findViewById(R.id.spinnerGenericNameId);
         medicinetypespinner = findViewById(R.id.spinnerMedicineTypeId);
 
-   /*     String key = dbref.push().getKey();*/
+        /*     String key = dbref.push().getKey();*/
 
         dbref = FirebaseDatabase.getInstance().getReference(user.getUid()).child("Medicine").child("Manufacture Name");
         db = FirebaseDatabase.getInstance().getReference(user.getUid()).child("Medicine").child("Generic Name");
@@ -200,20 +218,19 @@ public class AddMedicine extends AppCompatActivity {
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-        String m_name = medicineNameEditText.getText().toString().trim();
-        String box_pattern = boxPatternEditText.getText().toString().trim();
-        String m_category = medicineCategoryEditText.getText().toString().trim();
-        String m_unit = medicineUnitEditText.getText().toString().trim();
-        String sell_price = sellPriceEditText.getText().toString().trim();
-        String manufacture_price = manufacturePriceEditText.getText().toString().trim();
-        String shelf_no = shelfNumberEditText.getText().toString().trim();
+        m_name = medicineNameEditText.getText().toString().trim();
+        box_pattern = boxPatternEditText.getText().toString().trim();
+        m_category = medicineCategoryEditText.getText().toString().trim();
+        m_unit = medicineUnitEditText.getText().toString().trim();
+        sell_price = sellPriceEditText.getText().toString().trim();
+        manufacture_price = manufacturePriceEditText.getText().toString().trim();
+        shelf_no = shelfNumberEditText.getText().toString().trim();
 
-        String s_manufacture = menufacturespinner.getSelectedItem().toString();
-        String m_type = medicinetypespinner.getSelectedItem().toString();
-        String s_genericName = gnspinner.getSelectedItem().toString();
+        s_manufacture = menufacturespinner.getSelectedItem().toString();
+        m_type = medicinetypespinner.getSelectedItem().toString();
+        s_genericName = gnspinner.getSelectedItem().toString();
 
-
-        String key = databaseReference.push().getKey();
+        uid = databaseReference.push().getKey();
 
         if (m_name.isEmpty()){
             medicineNameEditText.setError("Required");
@@ -251,11 +268,22 @@ public class AddMedicine extends AppCompatActivity {
             return;
         }
 
-        addMedicineDataHolder obj = new addMedicineDataHolder(m_name,box_pattern,m_category,m_unit,sell_price,manufacture_price,shelf_no,s_manufacture,m_type,s_genericName);
+        addMedicineDataHolder obj = new addMedicineDataHolder(m_name,box_pattern,m_category,m_unit,sell_price,
+                manufacture_price,shelf_no,s_manufacture,m_type,s_genericName, uid);
         FirebaseDatabase addMedicinedb = FirebaseDatabase.getInstance();
         DatabaseReference node = addMedicinedb.getReference(user.getUid());
 
-        node.child("Medicine").child("Medicine List").child(key).setValue(obj);
+        node.child("Medicine").child("Medicine List").child(uid).setValue(obj).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+
+            public void onComplete(@NonNull Task<Void> task) {
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                DatabaseReference stockRef = FirebaseDatabase.getInstance().getReference(user.getUid()+"/Medicine/Stock Medicine/"+uid);
+
+                StockMedicineDataHolder obj = new StockMedicineDataHolder("", m_name,"","","","","0","", "", uid);
+                stockRef.setValue(obj);
+            }
+        });
 
         medicineNameEditText.setText("");
         boxPatternEditText.setText("");

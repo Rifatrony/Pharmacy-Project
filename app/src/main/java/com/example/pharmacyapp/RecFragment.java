@@ -14,6 +14,7 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 
 public class RecFragment extends Fragment {
@@ -58,9 +59,11 @@ public class RecFragment extends Fragment {
         recView = (RecyclerView) view.findViewById(R.id.recViewId);
         recView.setLayoutManager(new LinearLayoutManager(getContext()));
 
+
         FirebaseRecyclerOptions<StockMedicineDataHolder> options =
                 new FirebaseRecyclerOptions.Builder<StockMedicineDataHolder>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference(user.getUid()).child("Medicine").child("Stock Medicine"), StockMedicineDataHolder.class)
+                        .setQuery(FirebaseDatabase.getInstance().getReference(user.getUid())
+                                .child("Medicine").child("Stock Medicine").orderByChild("medicineName"), StockMedicineDataHolder.class)
                         .build();
 
         adapter = new StockAdapter(options);

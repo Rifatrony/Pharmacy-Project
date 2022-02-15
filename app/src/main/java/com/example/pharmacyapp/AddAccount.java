@@ -1,5 +1,6 @@
 package com.example.pharmacyapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -8,11 +9,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class AddAccount extends AppCompatActivity {
 
@@ -20,6 +27,8 @@ public class AddAccount extends AppCompatActivity {
     Button saveAccountButton;
 
     DatabaseReference db;
+
+    String uid, reason="this is the reason", date, amount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +46,9 @@ public class AddAccount extends AppCompatActivity {
         branchEditText = findViewById(R.id.branchId);
         openingBalanceEditText = findViewById(R.id.openingBalanceId);
 
+        String currentDate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
+        date = currentDate;
+
         saveAccountButton = findViewById(R.id.saveAccountButtonId);
 
         db = FirebaseDatabase.getInstance().getReference(user.getUid()).child("Medicine").child("Accounts");
@@ -45,7 +57,7 @@ public class AddAccount extends AppCompatActivity {
         saveAccountButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addAccont();
+                addAccount();
             }
         });
 
@@ -53,7 +65,7 @@ public class AddAccount extends AppCompatActivity {
 
     }
 
-    private void addAccont() {
+    private void addAccount() {
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -63,8 +75,9 @@ public class AddAccount extends AppCompatActivity {
         String account_type = accountTypeEditText.getEditText().getText().toString();
         String branch = branchEditText.getEditText().getText().toString();
         String opening_balance = openingBalanceEditText.getEditText().getText().toString();
+        uid = db.push().getKey();
 
-        String key = db.push().getKey();
+       // String key = db.push().getKey();
 
         if (bank_name.isEmpty()){
             bankNameEditText.getEditText().setError("Required");
@@ -102,14 +115,21 @@ public class AddAccount extends AppCompatActivity {
             return;
         }
 
-
-
-        addAccountDataHolder obj = new addAccountDataHolder(bank_name, account_name, account_number,account_type, branch , opening_balance);
+        addAccountDataHolder obj = new addAccountDataHolder(bank_name, account_name, account_number,account_type, branch , opening_balance, uid);
 
         FirebaseDatabase addAccount = FirebaseDatabase.getInstance();
         DatabaseReference node = addAccount.getReference(user.getUid());
 
-        node.child("Medicine").child("Accounts").child(key).setValue(obj);
+        node.child("Medicine").child("Accounts").child(uid).setValue(obj).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                DatabaseReference transactionRef = FirebaseDatabase.getInstance().getReference(user.getUid()+"/Medicine/Transaction/"+uid);
+
+                TransactionDataHolder obj = new TransactionDataHolder(uid,reason, date, opening_balance);
+                transactionRef.setValue(obj);
+            }
+        });
 
         bankNameEditText.getEditText().setText("");
         accountNameEditText.getEditText().setText("");

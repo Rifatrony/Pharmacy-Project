@@ -32,7 +32,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Medicine List"
+                    android:text="@string/medicine_List"
                     android:textColor="@color/white"
                     android:gravity="center"
                     android:textSize="25sp"
@@ -61,7 +61,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Medicine Category"
+                    android:text="@string/medicine_Category"
                     android:textColor="@color/white"
                     android:gravity="center"
                     android:textSize="25sp"
@@ -89,7 +89,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Medicine Type"
+                    android:text="@string/medicine_Type"
                     android:textColor="@color/white"
                     android:gravity="center"
                     android:textSize="25sp"
@@ -117,7 +117,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Medicine Unit"
+                    android:text="@string/medicine_Unit"
                     android:textColor="@color/white"
                     android:gravity="center"
                     android:textSize="25sp"
@@ -145,7 +145,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Generic Name"
+                    android:text="@string/generic_Name"
                     android:textColor="@color/white"
                     android:gravity="center"
                     android:textSize="25sp"
@@ -173,7 +173,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Manufacture"
+                    android:text="@string/manufacture"
                     android:textColor="@color/white"
                     android:gravity="center"
                     android:textSize="25sp"

@@ -3,13 +3,15 @@ package com.example.pharmacyapp;
 public class addMedicineDataHolder {
     String m_name,box_pattern,m_category,m_unit,sell_price,
             manufacture_price,shelf_no,s_manufacture,m_type,
-            s_genericName;
+            s_genericName, uid;
 
     addMedicineDataHolder(){
 
     }
 
-    public addMedicineDataHolder(String m_name, String box_pattern, String m_category, String m_unit, String sell_price, String manufacture_price, String shelf_no, String s_manufacture, String m_type, String s_genericName) {
+    public addMedicineDataHolder(String m_name, String box_pattern, String m_category, String m_unit, String sell_price,
+                                 String manufacture_price, String shelf_no, String s_manufacture, String m_type,
+                                 String s_genericName, String uid) {
         this.m_name = m_name;
         this.box_pattern = box_pattern;
         this.m_category = m_category;
@@ -20,6 +22,16 @@ public class addMedicineDataHolder {
         this.s_manufacture = s_manufacture;
         this.m_type = m_type;
         this.s_genericName = s_genericName;
+        this.uid = uid;
+    }
+
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
     public String getM_name() {

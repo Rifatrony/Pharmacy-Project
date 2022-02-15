@@ -12,20 +12,20 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Title"
+        android:hint="@string/title"
         android:layout_marginBottom="15dp"
         android:id="@+id/titleEditTextId"
         />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Description"
+        android:hint="@string/description"
         android:id="@+id/descriptionEditTextId"
         />
     <Button
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:text="Save Note"
+        android:text="@string/save"
         android:backgroundTint="#F57F17"
         android:id="@+id/saveNoteId"
         android:layout_marginTop="10dp"

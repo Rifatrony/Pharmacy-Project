@@ -34,6 +34,31 @@
                     android:gravity="center_vertical"
                     android:layout_width="150dp"
                     android:layout_height="match_parent"
+                    android:text="Supplier"
+                    android:textSize="20sp"
+                    />
+                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                    android:id="@+id/spinnerSuppilerId"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/spinner_background"
+                    android:textAlignment="textEnd"
+                    android:layout_marginLeft="40dp"
+                    />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:gravity="center_vertical"
+                    android:layout_width="150dp"
+                    android:layout_height="match_parent"
                     android:text="@string/manufacture"
                     android:textSize="20sp"
                     />
@@ -74,21 +99,15 @@
 
             </LinearLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
+            <EditText
                 android:id="@+id/buyDateId"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:hint="@string/select_buy_date"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
+                android:background="@drawable/edit_text_background"
                 android:layout_marginBottom="10dp"
-                android:hint="Date"
-                android:textColorHint="@color/bordercolor">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:inputType="datetime" />
-
-            </com.google.android.material.textfield.TextInputLayout>
+                android:paddingLeft="10dp"
+                />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -100,7 +119,7 @@
                     android:gravity="center_vertical"
                     android:layout_width="150dp"
                     android:layout_height="match_parent"
-                    android:text="Payment Type"
+                    android:text="@string/payment_type"
                     android:textSize="20sp"
                     />
                 <com.toptoche.searchablespinnerlibrary.SearchableSpinner
@@ -120,7 +139,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:hint="Batch Id"
+                android:hint="@string/batch_id"
                 android:textColorHint="@color/bordercolor">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -130,19 +149,49 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
+            <!--<com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/expierDateId"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:hint="Expire Date"
+                android:hint="@string/select_expire_date"
+                android:textColorHint="@color/bordercolor">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+-->
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/expierDateId"
+                android:hint="@string/select_expire_date"
+                android:textSize="20sp"
+                android:paddingTop="11dp"
+                android:paddingBottom="11dp"
+                android:paddingLeft="12dp"
+                android:background="@drawable/edit_text_background"
+                android:layout_marginBottom="10dp"
+                />
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/quantityId"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:hint="@string/purchase_Quantity"
                 android:textColorHint="@color/bordercolor">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="datetime" />
+                    android:inputType="numberDecimal" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -156,7 +205,7 @@
                     android:gravity="center_vertical"
                     android:layout_width="155dp"
                     android:layout_height="match_parent"
-                    android:text="Stock Quantity"
+                    android:text="@string/stock_Quantity"
                     android:textSize="20sp"
                     />
                 <TextView
@@ -173,28 +222,12 @@
             </LinearLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/quantityId"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:hint="Purchase Quantity"
-                android:textColorHint="@color/bordercolor">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="numberDecimal" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/manufacturePriceId"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:hint="Manufacture Price"
+                android:hint="@string/manufacture_price"
                 android:textColorHint="@color/bordercolor">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -214,7 +247,7 @@
                     android:gravity="center_vertical"
                     android:layout_width="150dp"
                     android:layout_height="match_parent"
-                    android:text="Total Price"
+                    android:text="@string/total_Price"
                     android:textSize="20sp"
                     />
                 <TextView
@@ -237,7 +270,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:hint="Paid Amount"
+                android:hint="@string/paid_Amount"
                 android:textColorHint="@color/bordercolor">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -256,7 +289,7 @@
                     android:gravity="center_vertical"
                     android:layout_width="150dp"
                     android:layout_height="match_parent"
-                    android:text="Due Amount"
+                    android:text="@string/due_Amount"
                     android:textSize="20sp"
                     />
                 <TextView
@@ -280,7 +313,7 @@
                 android:layout_marginBottom="20dp"
                 android:background="#277BBD"
                 android:padding="10dp"
-                android:text="Purchase"
+                android:text="@string/purchase_btn"
                 android:textColor="#000"
                 android:textSize="20sp" />
 

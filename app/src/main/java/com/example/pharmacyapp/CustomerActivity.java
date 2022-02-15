@@ -11,7 +11,7 @@ public class CustomerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer);
 
-        this.setTitle("Customer Details");
+        this.setTitle(R.string.customer);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.customerWrapper,new CustomerFirstFragment()).commit();
 

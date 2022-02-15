@@ -12,6 +12,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PharmacyApp">
         <activity
+            android:name=".SellDetails"
+            android:exported="false" />
+        <activity
+            android:name=".PurchaseDetails"
+            android:exported="false" />
+        <activity
+            android:name=".SupplierActivity"
+            android:exported="false" />
+        <activity
+            android:name=".All_Report"
+            android:exported="false" />
+        <activity
             android:name=".ExpireSoonActivity"
             android:exported="false" />
         <activity

@@ -20,12 +20,9 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class ViewMedicineActivity extends AppCompatActivity {
 
-    /*ListView listView;*/
-
     RecyclerView recyclerView;
     showMedicineAdapter adapter;
     FloatingActionButton fb;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

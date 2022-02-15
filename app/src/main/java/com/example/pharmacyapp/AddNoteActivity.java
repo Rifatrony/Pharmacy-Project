@@ -27,7 +27,7 @@ public class AddNoteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_note);
 
-        this.setTitle("Add Note");
+        this.setTitle(R.string.add_Note);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         //add back button tool bar

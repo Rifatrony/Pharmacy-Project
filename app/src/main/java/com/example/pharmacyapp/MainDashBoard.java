@@ -16,7 +16,8 @@ import android.widget.Toast;
 public class MainDashBoard extends AppCompatActivity implements View.OnClickListener {
 
     private CardView medicineCardView,stockCardView,purchaseCardView,
-            sellCardView,customerCardView,paymentCardView, noteCardView, expireCardView;
+            sellCardView,customerCardView,paymentCardView, noteCardView, expireCardView,
+            allReportCardView, supplierCardView;
 
     private AlertDialog.Builder alertDialogBuilder;
 
@@ -26,7 +27,8 @@ public class MainDashBoard extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_dash_board);
 
-        this.setTitle("Dashboard");
+        this.setTitle(R.string.dashboard);
+
 
 
         //Add back Button on tool bar
@@ -42,6 +44,8 @@ public class MainDashBoard extends AppCompatActivity implements View.OnClickList
         paymentCardView = findViewById(R.id.paymentCardViewId);
         noteCardView = findViewById(R.id.noteCardViewId);
         expireCardView = findViewById(R.id.expireCardViewId);
+        allReportCardView = findViewById(R.id.allReportCardViewId);
+        supplierCardView = findViewById(R.id.supplierCardViewId);
 
 
         medicineCardView.setOnClickListener(this);
@@ -52,6 +56,8 @@ public class MainDashBoard extends AppCompatActivity implements View.OnClickList
         paymentCardView.setOnClickListener(this);
         noteCardView.setOnClickListener(this);
         expireCardView.setOnClickListener(this);
+        allReportCardView.setOnClickListener(this);
+        supplierCardView.setOnClickListener(this);
 
 
     }
@@ -152,6 +158,16 @@ public class MainDashBoard extends AppCompatActivity implements View.OnClickList
 
         if (view.getId()==R.id.expireCardViewId){
             Intent intent = new Intent(this,ExpireSoonActivity.class);
+            startActivity(intent);
+        }
+
+        if (view.getId()==R.id.allReportCardViewId){
+            Intent intent = new Intent(this,All_Report.class);
+            startActivity(intent);
+        }
+
+        if (view.getId()==R.id.supplierCardViewId){
+            Intent intent = new Intent(this,SupplierActivity.class);
             startActivity(intent);
         }
     }

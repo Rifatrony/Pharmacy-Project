@@ -2,13 +2,16 @@ package com.example.pharmacyapp;
 
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,20 +22,107 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.ViewHolder;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class viewNoteAdapter extends FirebaseRecyclerAdapter<addNoteDataholder,viewNoteAdapter.myViewHolder> {
+public class viewNoteAdapter extends RecyclerView.Adapter<viewNoteAdapter.myViewHolder>{
 
-    public viewNoteAdapter(@NonNull FirebaseRecyclerOptions options) {
+    Context context;
+    ArrayList<addNoteDataholder> list;
+
+    public viewNoteAdapter(Context context, ArrayList<addNoteDataholder> list) {
+        this.context = context;
+        this.list = list;
+    }
+
+    @NonNull
+    @Override
+    public myViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(context).inflate(R.layout.note_sample_layout,parent,false);
+        return new viewNoteAdapter.myViewHolder(v);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull myViewHolder holder, int position) {
+        addNoteDataholder data = list.get(position);
+
+        holder.title.setText(data.getTitle());
+        holder.description.setText(data.getDescription());
+
+        holder.edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                DialogPlus dialog = DialogPlus.newDialog(context)
+                        .setGravity(Gravity.CENTER)
+                        .setMargin(50,0,50,0)
+                        .setContentHolder(new ViewHolder(R.layout.edit_note_dialog_content))
+                        .setExpanded(false)
+                        .create();
+
+
+                View holderView = (LinearLayout) dialog.getHolderView();
+
+                EditText title = holderView.findViewById(R.id.utitle);
+                EditText description = holderView.findViewById(R.id.udesc);
+                Button submit = holderView.findViewById(R.id.updateBtnId);
+
+                //String selectedMedicineUid = data.getUid();
+
+                title.setText(data.getTitle());
+                description.setText(data.getDescription());
+
+                /*submit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                        DatabaseReference db = FirebaseDatabase.getInstance().getReference(user.getUid());
+
+                        Map<String, Object> map = new HashMap<>();
+                        map.put("title",title.getText().toString());
+                        map.put("description",description.getText().toString());
+                        db.child("Medicine").child("Note Details").child(db.getKey()).updateChildren(map)
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        dialog.dismiss();
+                                    }
+                                });
+
+                        //Toast.makeText(context.getApplicationContext(),"Updated Successfully",Toast.LENGTH_SHORT).show();
+
+
+                    }
+                });*/
+
+                dialog.show();
+
+            }
+        });
+
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return list.size();
+    }
+
+   /* public viewNoteAdapter(@NonNull FirebaseRecyclerOptions options) {
         super(options);
     }
 
@@ -119,7 +209,6 @@ public class viewNoteAdapter extends FirebaseRecyclerAdapter<addNoteDataholder,v
                 builder.show();
             }
         });
-
     }
 
     @NonNull
@@ -127,9 +216,9 @@ public class viewNoteAdapter extends FirebaseRecyclerAdapter<addNoteDataholder,v
     public myViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.note_sample_layout,parent,false);
         return new myViewHolder(view);
-    }
+    }*/
 
-    class myViewHolder extends RecyclerView.ViewHolder{
+    public class myViewHolder extends RecyclerView.ViewHolder{
 
         TextView title, description;
         ImageView edit, delete;
@@ -140,8 +229,8 @@ public class viewNoteAdapter extends FirebaseRecyclerAdapter<addNoteDataholder,v
             title= itemView.findViewById(R.id.titleTextViewId);
             description= itemView.findViewById(R.id.descTextViewId);
 
-            edit = itemView.findViewById(R.id.btn1);
-            delete = itemView.findViewById(R.id.btn2);
+            edit = itemView.findViewById(R.id.edit);
+            delete = itemView.findViewById(R.id.delete);
         }
     }
 

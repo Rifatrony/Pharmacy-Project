@@ -21,7 +21,7 @@ public class SubDeshboard extends AppCompatActivity implements View.OnClickListe
 
 
         //set title
-        this.setTitle("Medicine");
+        this.setTitle(R.string.medicine);
 
         //Add back Button on tool bar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

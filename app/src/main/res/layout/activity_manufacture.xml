@@ -25,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:hint="Manufacture Name"
+            android:hint="@string/manufacture"
             android:textColorHint="@color/bordercolor">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -43,7 +43,8 @@
             android:layout_marginTop="20dp"
             android:background="#277BBD"
             android:padding="10dp"
-            android:text="Save"
+            android:textAllCaps="false"
+            android:text="@string/save"
             android:textColor="#000"
             android:textSize="20sp" />
 

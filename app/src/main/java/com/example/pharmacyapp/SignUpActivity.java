@@ -22,7 +22,7 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private TextInputLayout signUpEmailEditText, signUpPasswordEditText;
+    private EditText signUpEmailEditText, signUpPasswordEditText;
 
     private Button signUpButton;
     private TextView signInTextView;
@@ -69,8 +69,8 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     private void userRegister() {
 
 
-        String email = signUpEmailEditText.getEditText().getText().toString().trim();
-        String password = signUpPasswordEditText.getEditText().getText().toString().trim();
+        String email = signUpEmailEditText.getText().toString().trim();
+        String password = signUpPasswordEditText.getText().toString().trim();
 
         if (email.isEmpty()){
             signUpEmailEditText.setError("Enter email address");
@@ -100,16 +100,16 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             public void onComplete(@NonNull Task<AuthResult> task) {
                 progressBar.setVisibility(View.GONE);
                 if (task.isSuccessful()) {
-                    signUpEmailEditText.getEditText().setText("");
-                    signUpPasswordEditText.getEditText().setText("");
+                    signUpEmailEditText.setText("");
+                    signUpPasswordEditText.setText("");
                     Toast.makeText(getApplicationContext(), "Register is successful", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(SignUpActivity.this,LoginActivity.class);
                     startActivity(intent);
                 }
                 else {
                     if(task.getException() instanceof FirebaseAuthUserCollisionException){
-                        signUpEmailEditText.getEditText().setText("");
-                        signUpPasswordEditText.getEditText().setText("");
+                        signUpEmailEditText.setText("");
+                        signUpPasswordEditText.setText("");
                         Toast.makeText(getApplicationContext(), "User is Already Register", Toast.LENGTH_LONG).show();
                     }
                     else {

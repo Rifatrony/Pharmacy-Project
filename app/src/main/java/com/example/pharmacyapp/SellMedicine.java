@@ -4,13 +4,16 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -28,13 +31,18 @@ import com.google.firebase.database.ValueEventListener;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
 
 public class SellMedicine extends AppCompatActivity {
 
     Spinner medicineNameSpinner, paymentTypeSpinner;
 
-    TextInputLayout customerNameEditText, sellDateEditText,
+    EditText sellDateEditText;
+    TextInputLayout customerNameEditText,
             sellQuantityEditText, sellPriceEditText, sellPaidAmount;
+
+    String selectedMedicineUid = null;
 
     EditText totalPrice, sellDueAmount;
     TextView stockQuantityTextView;
@@ -46,18 +54,32 @@ public class SellMedicine extends AppCompatActivity {
     ArrayList<String> medicineNamelist;
     ArrayList<String> paymentTypeList;
     ArrayList<String> sellPriceList;
+    ArrayList<String> medicineUidList;
+
 
     ArrayAdapter<String> medicineNameadapter;
     ArrayAdapter<String> paymentTypeAdapter;
 
-    DatabaseReference db, dbAccount, dbSell;
+    double recentMedicineQuantity;
+    double finalMedicineQuantity;
+
+    DatabaseReference db, dbAccount, dbSell, dbStock;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sell_medicine);
 
-        this.setTitle("Sell Medicine");
+        this.setTitle(R.string.sell);
+
+        //Add back Button on tool bar
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        Calendar calendar = Calendar.getInstance();
+        final int year = calendar.get(Calendar.YEAR);
+        final int month = calendar.get(Calendar.MONTH);
+        final int day = calendar.get(Calendar.DAY_OF_MONTH);
 
 
         medicineNameSpinner = findViewById(R.id.spinnerMedicineNameId);
@@ -80,11 +102,16 @@ public class SellMedicine extends AppCompatActivity {
         dbAccount = FirebaseDatabase.getInstance().getReference(user.getUid())
                 .child("Medicine").child("Accounts");
 
+        dbStock = FirebaseDatabase.getInstance().getReference(user.getUid())
+                .child("Medicine").child("Stock Medicine");
+
         dbSell = FirebaseDatabase.getInstance().getReference(user.getUid()).child("Medicine").child("Sell Medicine");
 
         //Medicine Name
         medicineNamelist = new ArrayList<>();
         sellPriceList = new ArrayList<>();
+        medicineUidList = new ArrayList<>();
+
 
 
         //Payment type
@@ -97,8 +124,37 @@ public class SellMedicine extends AppCompatActivity {
             }
         });
 
+        sellDateEditText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(SellMedicine.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                        month = month +1;
+                        String date = day+"/"+month+"/"+year;
+                        sellDateEditText.setText(date);
+                    }
+                },year,month,day);
+
+                datePickerDialog.show();
+            }
+        });
+
+
+
         fetchMedicineNameData();
         fetchPaymentTypeData();
+    }
+
+    //Back button on top navbar
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        if (item.getItemId()==android.R.id.home){
+            this.finish();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 
@@ -117,9 +173,10 @@ public class SellMedicine extends AppCompatActivity {
                     {
                         medicineNamelist.add(data.getM_name());
                         sellPriceList.add(data.getSell_price());
+                        medicineUidList.add(data.getUid());
                     }
                 }
-                setMedicineAdapter(medicineNamelist, sellPriceList);
+                setMedicineAdapter(medicineNamelist, sellPriceList, medicineUidList);
             }
 
             @Override
@@ -130,7 +187,7 @@ public class SellMedicine extends AppCompatActivity {
         });
     }
 
-    private void setMedicineAdapter(ArrayList<String> list, ArrayList<String> manufacturerPriceList) {
+    private void setMedicineAdapter(ArrayList<String> list, ArrayList<String> sellPriceList, ArrayList<String> medicineUidList) {
         medicineNameadapter = new ArrayAdapter<>(SellMedicine.this, android.R.layout.simple_spinner_dropdown_item, list);
         medicineNameSpinner.setAdapter(medicineNameadapter);
 
@@ -139,14 +196,35 @@ public class SellMedicine extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                String sellPrice = sellPriceList.get(position);
+                String medicineUid = medicineUidList.get(position);
+                selectedMedicineUid = medicineUid;
 
-                //int paid_amount = Integer.parseInt(purchasePaidAmount.getEditText().getText().toString());
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                DatabaseReference quantityRef = FirebaseDatabase.getInstance().getReference(user.getUid()+"/Medicine/Stock Medicine/"+medicineUid);
+                quantityRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                        if (snapshot.exists()) {
+                            StockMedicineDataHolder data = snapshot.getValue(StockMedicineDataHolder.class);
+                            if (data != null) {
+                                stockQuantityTextView.setText(data.getStock_quantity());
+                                recentMedicineQuantity = Double.parseDouble(data.getStock_quantity());
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+                String sellPrice = sellPriceList.get(position);
 
                 sellPriceEditText.getEditText().setText(sellPrice);
 
-                int price = Integer.parseInt(sellPriceEditText.getEditText().getText().toString());
-                //int paidPrice = Integer.parseInt(sellPaidAmount.getEditText().getText().toString());
+                double price = Double.parseDouble(sellPriceEditText.getEditText().getText().toString());
 
                 TextWatcher textWatcher = new TextWatcher() {
                     @Override
@@ -158,8 +236,8 @@ public class SellMedicine extends AppCompatActivity {
                     public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                         if (!sellPriceEditText.getEditText().getText().toString().equals("") && !sellQuantityEditText.getEditText().getText().toString().equals("")){
 
-                            int temp1 = Integer.parseInt(sellQuantityEditText.getEditText().getText().toString());
-                            int res= price*temp1;
+                            double temp1 = Double.parseDouble(sellQuantityEditText.getEditText().getText().toString());
+                            double res= price*temp1;
                             //int due = res - paidPrice;
 
                             totalPrice.setText(String.valueOf(res));
@@ -175,8 +253,8 @@ public class SellMedicine extends AppCompatActivity {
                                 public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                                     if (!totalPrice.getText().toString().equals("") && !sellPaidAmount.getEditText().getText().toString().equals("")) {
 
-                                        int temp2 = Integer.parseInt(sellPaidAmount.getEditText().getText().toString());
-                                        int result = res - temp2;
+                                        double temp2 = Double.parseDouble(sellPaidAmount.getEditText().getText().toString());
+                                        double result = res - temp2;
                                         //int due = res - paidPrice;
 
                                         sellDueAmount.setText(String.valueOf(result));
@@ -196,7 +274,18 @@ public class SellMedicine extends AppCompatActivity {
 
                     @Override
                     public void afterTextChanged(Editable editable) {
+                        if (!editable.toString().equals("")) {
 
+                            finalMedicineQuantity = recentMedicineQuantity - Double.parseDouble(editable.toString());
+                            stockQuantityTextView.setText(String.valueOf(finalMedicineQuantity));
+
+                            System.out.println("RECENT STOCk ----> "+finalMedicineQuantity);
+
+                        } else {
+
+                            System.out.println(" NULL  ");
+                            stockQuantityTextView.setText(String.valueOf(recentMedicineQuantity));
+                        }
                     }
                 };
 
@@ -247,7 +336,7 @@ public class SellMedicine extends AppCompatActivity {
         String customer_name= customerNameEditText.getEditText().getText().toString();
         String medicine_name= medicineNameSpinner.getSelectedItem().toString();
 
-        String sell_date= customerNameEditText.getEditText().getText().toString();
+        String sell_date= sellDateEditText.getText().toString();
         String payment_type= paymentTypeSpinner.getSelectedItem().toString();
 
         String stock_quantity= stockQuantityTextView.getText().toString();
@@ -267,6 +356,17 @@ public class SellMedicine extends AppCompatActivity {
         DatabaseReference node = addAccount.getReference(user.getUid());
 
         node.child("Medicine").child("Sell Medicine").child(key).setValue(obj);
+
+        assert user != null;
+        dbStock= FirebaseDatabase.getInstance().getReference(user.getUid());
+        assert key != null;
+
+
+        HashMap<String, Object> stockMap = new HashMap<>();
+        stockMap.put("stock_quantity", stockQuantityTextView.getText().toString());
+
+        dbStock.child("Medicine").child("Stock Medicine").child(selectedMedicineUid).updateChildren(stockMap);
+
 
         Toast.makeText(getApplicationContext(),"Medicine Sell",Toast.LENGTH_LONG).show();
 
